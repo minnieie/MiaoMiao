@@ -1,0 +1,342 @@
+/* Prevent horizontal scrolling on the body */
+html, body {
+    overflow-x: hidden;
+    width: 100%;
+}
+
+/* Ensure content fits within the viewport */
+* {
+    box-sizing: border-box;
+    max-width: 100%;
+}
+
+/* Allow horizontal scrolling only for specific sections */
+.container, .wishlist-items, .bag-items {
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+body {
+    margin: 0;
+    font-family: 'Comic Sans MS', Arial, sans-serif; /* Use Comic Sans MS font as the primary font */
+    background-color: #000000; /* Set the entire page background to black */
+}
+
+/* Hide the menu by default */
+#nav-menu {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 50px; /* Adjust based on your layout */
+    right: 10px;
+    background: white;
+    width: 200px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+/* Show the menu when 'show' class is added */
+#nav-menu.show {
+    display: flex;
+}
+
+/* Hamburger icon styling */
+.menu-icon {
+    font-size: 24px;
+    cursor: pointer;
+    position: absolute;
+    left: 20px;
+}
+
+/* Logo styling */
+.logo {
+    margin: 0 auto;
+    display: block;
+    max-height: 50px; /* Adjust as needed */
+}
+
+/* Navigation */
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: #f9f9f9;
+    font-size: 1.2rem;
+    position: relative;
+}
+
+/* Navigation icons */
+.nav-icons {
+    position: absolute;
+    right: 20px;
+    display: flex;
+    gap: 15px;
+}
+
+.nav-icons a {
+    color: #000;
+    font-size: 24px;
+    text-decoration: none;
+}
+
+/* Main content background remains black */
+main {
+    background-color: #000000;
+    padding: 1rem;
+}
+
+/* Discover All & Explore sections with light background */
+.discover-section, .explore-section {
+    background-color: #f9f9f9;
+    padding: 1rem;
+    margin: 1rem;
+    border-radius: 8px;
+}
+
+.container {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto; /* Enable horizontal scrolling */
+    gap: 1rem;
+    padding: 1rem;
+    background-color: #000000; /* Ensure containers have a black background */
+}
+
+/* Best Sellers section with white background */
+.best-sellers-section {
+    background-color: #ffffff; /* Set the Best Sellers section background to white */
+    padding: 2rem;
+    margin: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    gap: 2rem;
+}
+
+/* General card styles */
+.card {
+    min-width: 200px;
+    flex: 0 0 auto;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    height: 300px;
+}
+
+.card img {
+    max-width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
+.card h3 {
+    font-size: 1.2rem;
+    margin: 0.5rem 0;
+}
+
+.card button {
+    padding: 0.5rem 1rem;
+    border: none;
+    background-color: #000;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+.card button:hover {
+    background-color: #333;
+}
+
+/* Remove borders for Featured and New Arrivals sections */
+.featured-section .card, .new-arrivals-section .card {
+    background: none;
+    border: none;
+    padding: 0;
+    box-shadow: none;
+}
+
+/* Section headers */
+.section-header {
+    text-align: left;
+    color: #fff;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    font-family: 'Comic Sans MS', sans-serif;
+    font-weight: 600;
+    padding-left: 1rem;
+}
+
+/* Footer */
+footer {
+    background-color: #000;
+    color: #fff;
+    padding: 4rem 2rem;
+    text-align: center;
+    font-family: 'Comic Sans MS', Arial, sans-serif;
+}
+
+footer h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+footer p {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+footer p a {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.email-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+footer input {
+    padding: 1rem;
+    width: 50%;
+    border-radius: 4px;
+    border: none;
+    font-size: 1rem;
+    margin-right: 0.5rem;
+}
+
+footer button {
+    padding: 1rem 1.5rem;
+    border: none;
+    background-color: #fff;
+    color: #000;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+footer button:hover {
+    background-color: #ddd;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.footer-links a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
+
+/* Account Page Styles */
+.account-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    background-color: #f9f9f9;
+}
+
+.profile {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.profile-pic {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.username {
+    font-size: 1.5rem;
+    margin-top: 1rem;
+}
+
+/* Make wishlist items scrollable */
+.wishlist-items {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto; /* Enable horizontal scrolling */
+    gap: 1rem;
+}
+
+.wishlist-items img {
+    flex: 0 0 auto;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.newsletter-signup {
+    background-color: #000;
+    color: #fff;
+    padding: 2rem;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.account-section {
+    position: sticky;
+    top: 0;
+    background: white;
+    padding: 20px;
+    z-index: 1000;
+}
+
+/* Make the wishlist and bag sections scrollable */
+.wishlist-items, .bag-items {
+    display: flex;
+    overflow-x: auto; /* Enables horizontal scrolling */
+    gap: 10px;
+    padding: 10px;
+    white-space: nowrap;
+    scroll-snap-type: x mandatory;
+}
+
+.wishlist-items img, .bag-items img {
+    width: 150px;
+    height: auto;
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+}
+
+/* Hide scrollbar for a cleaner look */
+.wishlist-items::-webkit-scrollbar, .bag-items::-webkit-scrollbar {
+    display: none;
+}
+
+.newsletter-signup h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.newsletter-signup p {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.newsletter-signup input {
+    padding: 0.5rem;
+}
+

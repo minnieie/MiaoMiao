@@ -3,9 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Vertical Navigation Menu</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script defer src="script.js"></script>
 </head>
 <body>
+    <header>
+        <nav>
+            <a href="index.html">
+                <img src="figmaPics/logo.png" alt="MiaoMiao Logo" class="logo">
+            </a>
+            <div class="menu-icon" onclick="toggleMenu()">
+                &#9776; <!-- Hamburger icon -->
+            </div>
+            <ul id="nav-menu">
+                <li><a href="index.html">Home</a></li> 
+                <li><a href="Catalog.html">Catalog</a></li>
+                <li><a href="vouchers.html">Vouchers & Discounts</a></li>
+                <li><a href="tierlist.html">MiaoMiao Pass</a></li>
+            </ul>
+            <div class="nav-icons">
+                <a href="account.html"><i class="fas fa-user"></i></a>
+                <a href="wishlist.html"><i class="fas fa-heart"></i></a>
+                <a href="cart.html"><i class="fas fa-shopping-cart"></i></a>
+            </div>
+        </nav>
+    </header>
 
+    <!-- Featured Section -->
+    <div class="section featured-section">
+        <h2 class="section-header">Featured</h2>
+        <div class="container">
+            <div class="card"><img src="figmaPics/featured1.png" alt="Little Theatre Popmart"></div>
+            <div class="card"><img src="figmaPics/featured2.png" alt="Molly Popmart"></div>
+            <div class="card"><img src="figmaPics/featured3.png" alt="Minnie Mouse"></div>
+            <div class="card"><img src="figmaPics/featured4.png" alt="Little Molly Popmart"></div>
+            <div class="card"><img src="figmaPics/featured5.png" alt="Snake New Year Collection Popmart"></div>
+            <div class="card"><img src="figmaPics/featured6.png" alt="Labubu Popmart"></div>
+        </div>
+    </div>
+
+    <!-- New Arrivals Section -->
+    <div class="section new-arrivals-section">
+        <h2 class="section-header">New Arrivals</h2>
+        <div class="container">
+            <div class="card"><img src="figmaPics/newArrival1.jpg" alt="Little Theatre Popmart"></div>
+            <div class="card"><img src="figmaPics/newArrival2.jpg" alt="Molly Popmart"></div>
+            <div class="card"><img src="figmaPics/newArrival3.jpg" alt="Minnie Mouse"></div>
+            <div class="card"><img src="figmaPics/newArrival4.jpg" alt="Little Molly Popmart"></div>
+            <div class="card"><img src="figmaPics/newArrival5.jpg" alt="Snake New Year Collection Popmart"></div>
+            <div class="card"><img src="figmaPics/newArrival6.jpg" alt="Labubu Popmart"></div>
+        </div>
+    </div>
+
+    <!-- Best Sellers Section -->
+    <div class="container best-sellers-section">
+        <div class="card">
+            <img src="figmaPics/bestSeller.png" alt="View Best Sellers">
+            <h3>Discover our most loved</h3>
+            <button>Best Sellers</button>
+        </div>
+        <div class="card">
+            <img src="figmaPics/explore.png" alt="View All Products">
+            <h3>Explore all our products</h3>
+            <button>View All</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <aside class="newsletter-signup">
+        <h2>SIGN UP FOR JOY DELIVERED TO YOUR INBOX</h2>
+        <p>Sign up for our email newsletter to be in the know about new arrivals, special offers, and exclusive events. When you sign up you'll receive 10% off your first purchase! When you become a MeowMeow's Insider you'll be able to create a baby.</p>
+        <input type="email" placeholder="Enter your email address here">
+        <button>JOIN NOW</button>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+    </aside>
+    <script>
+        document.getElementById("bornPinkImg").addEventListener("click", function() {
+            window.open("https://www.youtube.com/watch?v=qCDPprTDkJE&list=PLS4jAfE9d3aLoJfkmHvQVmRjHiaYuLBQL", "_blank");
+        });
+        function toggleMenu() {
+            var menu = document.getElementById("nav-menu");
+            menu.classList.toggle("show");
+        }
+    </script>
 </body>
 </html>
