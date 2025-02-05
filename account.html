@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html">
+                <img src="figmaPics/logo.png" alt="MiaoMiao Logo" class="logo">
+            </a>
+            <div class="menu-icon" onclick="toggleMenu()">
+                &#9776; <!-- Hamburger icon -->
+            </div>
+            <ul id="nav-menu">
+                <li><a href="index.html">Home</a></li> 
+                <li><a href="Catalog.html">Catalog</a></li>
+                <li><a href="vouchers.html">Vouchers & Discounts</a></li>
+                <li><a href="tierlist.html">MiaoMiao Pass</a></li>
+            </ul>
+            <div class="nav-icons">
+                <a href="account.html"><i class="fas fa-user"></i></a>
+                <a href="wishlist.html"><i class="fas fa-heart"></i></a>
+                <a href="cart.html"><i class="fas fa-shopping-cart"></i></a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="account-section">
+            <div class="profile">
+                <img src="figmaPics/Avatar.png" alt="Profile Picture" class="profile-pic">
+                <h2 class="username">Meow<3</h2>
+            </div>
+            <div class="wishlist-section">
+                <h3>Wishlists</h3>
+                <div class="wishlist-items">
+                    <img src="figmaPics/wishList1.png" alt="Item 1">
+                    <img src="figmaPics/wishList2.png" alt="Item 2">
+                    <img src="figmaPics/wishList3.png" alt="Item 3">
+                    <img src="figmaPics/wishList4.png" alt="Item 4">
+                    <img src="figmaPics/wishList5.png" alt="">
+                    <img src="figmaPics/wishList6.png" alt="">
+                </div>
+            </div>
+            <div class="bag-section">
+                <h3>Bag</h3>
+                <div class="bag-items">
+                    <img src="figmaPics/bag1.png" alt="Item 5">
+                    <img src="figmaPics/bag2.png" alt="Item 6">
+                    <img src="figmaPics/bag3.png" alt="Item 7">
+                    <img src="figmaPics/bag4.png" alt="Item 8">
+                    <img src="figmaPics/bag5.png" alt="">
+                    <img src="figmaPics/bag6.png" alt="">
+                </div>
+            </div>
+        </section>
+
+        <aside class="newsletter-signup">
+            <h2>SIGN UP FOR JOY DELIVERED TO YOUR INBOX</h2>
+            <p>Sign up for our email newsletter to be in the know about new arrivals, special offers, and exclusive events. When you sign up you'll receive 10% off your first purchase! When you become a MeowMeow's Insider you'll be able to create a baby.</p>
+            <input type="email" placeholder="Enter your email address here">
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+        </aside>
+    </main>
+
+    <script>
+        function toggleMenu() {
+            var menu = document.getElementById("nav-menu");
+            menu.classList.toggle("show");
+        }
+    </script>
+</body>
+</html>
