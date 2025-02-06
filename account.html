@@ -23,7 +23,7 @@
                 <li><a href="tierlist.html">MiaoMiao Pass</a></li>
             </ul>
             <div class="nav-icons">
-                <a href="account.html"><i class="fas fa-user"></i></a>
+                <a href="#" id="account-icon"><i class="fas fa-user"></i></a>
                 <a href="wishlist.html"><i class="fas fa-heart"></i></a>
                 <a href="cart.html"><i class="fas fa-shopping-cart"></i></a>
             </div>
@@ -70,12 +70,54 @@
                 <a href="#"><i class="fab fa-twitter"></i></a>
             </div>
         </aside>
+
+        <!-- Account Login Modal -->
+        <div id="login-modal" class="modal hidden">
+            <div class="modal-content">
+                <span class="close-button" onclick="toggleModal()">&times;</span>
+                <h2>Account Login</h2>
+                for="username">Email or Username:</label>
+                    <input type="text" id="username" placeholder="Enter your username">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" placeholder="Password">
+                    <button type="submit">Log In</button>
+                </form>
+                <h2>NEW TO MIAOMIAO?</h2>
+                <p>Creating an account is quick and easy! Save your favorite items, track your orders, and enjoy faster checkout.</p>
+                <button onclick="createAccount()">Create Account</button>
+            </div>
+        </div>
     </main>
 
     <script>
         function toggleMenu() {
             var menu = document.getElementById("nav-menu");
             menu.classList.toggle("show");
+        }
+
+        function toggleModal() {
+            var modal = document.getElementById("login-modal");
+            modal.classList.toggle("hidden");
+        }
+
+        document.getElementById('account-icon').addEventListener('click', function(event) {
+            event.preventDefault();
+            toggleModal();
+        });
+
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            // Add your login logic here
+            toggleModal();
+            // Show the account page after login
+            document.querySelector('.account-section').classList.remove('hidden');
+        });
+
+        function createAccount() {
+            // Add your create account logic here
+            toggleModal();
+            // Show the account page after account creation
+            document.querySelector('.account-section').classList.remove('hidden');
         }
     </script>
 </body>

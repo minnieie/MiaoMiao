@@ -1,58 +1,15 @@
-/* Prevent horizontal scrolling on the body */
+/* General Styles */
 html, body {
     overflow-x: hidden;
     width: 100%;
+    margin: 0;
+    font-family: 'Comic Sans MS', Arial, sans-serif;
+    background-color: #000000;
 }
 
-/* Ensure content fits within the viewport */
 * {
     box-sizing: border-box;
     max-width: 100%;
-}
-
-/* Allow horizontal scrolling only for specific sections */
-.container, .wishlist-items, .bag-items {
-    overflow-x: auto;
-    white-space: nowrap;
-}
-
-body {
-    margin: 0;
-    font-family: 'Comic Sans MS', Arial, sans-serif; /* Use Comic Sans MS font as the primary font */
-    background-color: #000000; /* Set the entire page background to black */
-}
-
-/* Hide the menu by default */
-#nav-menu {
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    top: 50px; /* Adjust based on your layout */
-    right: 10px;
-    background: white;
-    width: 200px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-}
-
-/* Show the menu when 'show' class is added */
-#nav-menu.show {
-    display: flex;
-}
-
-/* Hamburger icon styling */
-.menu-icon {
-    font-size: 24px;
-    cursor: pointer;
-    position: absolute;
-    left: 20px;
-}
-
-/* Logo styling */
-.logo {
-    margin: 0 auto;
-    display: block;
-    max-height: 50px; /* Adjust as needed */
 }
 
 /* Navigation */
@@ -66,7 +23,35 @@ nav {
     position: relative;
 }
 
-/* Navigation icons */
+.logo {
+    margin: 0 auto;
+    display: block;
+    max-height: 50px;
+}
+
+.menu-icon {
+    font-size: 24px;
+    cursor: pointer;
+    position: absolute;
+    left: 20px;
+}
+
+#nav-menu {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 50px;
+    right: 10px;
+    background: white;
+    width: 200px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+#nav-menu.show {
+    display: flex;
+}
+
 .nav-icons {
     position: absolute;
     right: 20px;
@@ -80,89 +65,28 @@ nav {
     text-decoration: none;
 }
 
-/* Main content background remains black */
+
+/* Desktop: Always show the menu */
+@media (min-width: 768px) {
+    #nav-menu {
+        display: flex !important; /* Always visible */
+        flex-direction: column; /* Keep existing layout */
+        position: absolute;
+        top: 50px;
+        right: 10px;
+    }
+
+    .menu-icon {
+        display: none; /* Hide hamburger icon */
+    }
+}
+/* Main Content */
 main {
     background-color: #000000;
     padding: 1rem;
 }
 
-/* Discover All & Explore sections with light background */
-.discover-section, .explore-section {
-    background-color: #f9f9f9;
-    padding: 1rem;
-    margin: 1rem;
-    border-radius: 8px;
-}
-
-.container {
-    display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto; /* Enable horizontal scrolling */
-    gap: 1rem;
-    padding: 1rem;
-    background-color: #000000; /* Ensure containers have a black background */
-}
-
-/* Best Sellers section with white background */
-.best-sellers-section {
-    background-color: #ffffff; /* Set the Best Sellers section background to white */
-    padding: 2rem;
-    margin: 0;
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    gap: 2rem;
-}
-
-/* General card styles */
-.card {
-    min-width: 200px;
-    flex: 0 0 auto;
-    background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 1rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    height: 300px;
-}
-
-.card img {
-    max-width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 4px;
-    margin-bottom: 1rem;
-}
-
-.card h3 {
-    font-size: 1.2rem;
-    margin: 0.5rem 0;
-}
-
-.card button {
-    padding: 0.5rem 1rem;
-    border: none;
-    background-color: #000;
-    color: #fff;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-top: 1rem;
-}
-
-.card button:hover {
-    background-color: #333;
-}
-
-/* Remove borders for Featured and New Arrivals sections */
-.featured-section .card, .new-arrivals-section .card {
-    background: none;
-    border: none;
-    padding: 0;
-    box-shadow: none;
-}
-
-/* Section headers */
+/* Section Headers */
 .section-header {
     text-align: left;
     color: #fff;
@@ -173,6 +97,151 @@ main {
     padding-left: 1rem;
 }
 
+/* Container Styles */
+.container {
+    display: flex;
+    overflow-x: auto;
+    gap: 20px;
+    padding: 20px;
+    white-space: nowrap;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    background-color: #000000;
+}
+
+.container::-webkit-scrollbar {
+    height: 10px;
+}
+
+.container::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 10px;
+}
+
+.container::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+}
+
+/* General Card Styles */
+.card {
+    flex: 0 0 auto;
+    width: 500px;
+    height: auto;
+    text-align: center;
+}
+
+/* Featured Section */
+.featured-section .container {
+    display: flex;
+    overflow-x: auto;
+    gap: 20px;
+    padding: 20px;
+    white-space: nowrap;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+
+.featured-section .card {
+    background: none; /* Remove background */
+    border: none; /* Remove border */
+    padding: 0; /* Remove padding */
+    box-shadow: none; /* Remove box-shadow */
+}
+
+.featured-section .card img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+.container {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto; /* Enable horizontal scrolling */
+    gap: 1rem;
+    padding: 1rem;
+    background-color: #000000; /* Ensure containers have a black background */
+}
+
+
+/* Best Sellers Section */
+.best-sellers-section {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    overflow-x: auto; /* Enable horizontal scrolling */
+    gap: 2rem; /* Space between cards */
+    padding: 2rem;
+    background-color: #ffffff; /* Set the background to white */
+    scroll-behavior: smooth; /* Smooth scrolling */
+    -webkit-overflow-scrolling: touch; /* Enable smooth scrolling on touch devices */
+    white-space: nowrap; /* Prevent wrapping of cards */
+}
+
+.best-sellers-section .card {
+    background: #fff; /* Keep background */
+    border: 1px solid #ddd; /* Keep border */
+    padding: 1rem; /* Keep padding */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Keep box-shadow */
+    display: inline-block; /* Ensure cards are inline for horizontal scrolling */
+}
+
+.best-sellers-section .card img {
+    width: 100%;
+    height: auto; /* Ensure the image is not cropped */
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
+.best-sellers-section .card h3 {
+    font-size: 1.2rem;
+    margin: 0.5rem 0;
+}
+
+/* Button Styling */
+.best-sellers-section .card button {
+    padding: 0.5rem 1rem;
+    border: none;
+    background: linear-gradient(45deg, #ff6b6b, #ff8e53); /* Gradient background */
+    color: #fff;
+    border-radius: 25px; /* Rounded corners */
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+}
+
+.best-sellers-section .card button:hover {
+    background: linear-gradient(45deg, #ff8e53, #ff6b6b); /* Hover effect */
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .best-sellers-section {
+        justify-content: flex-start; /* Align items to the start */
+        padding: 1rem; /* Reduce padding */
+    }
+
+    .best-sellers-section .card {
+        width: 80%; /* Adjust card width for smaller screens */
+    }
+
+    .best-sellers-section .card img {
+        height: auto; /* Adjust image height for smaller screens */
+    }
+}
+
+@media (min-width: 769px) {
+    .best-sellers-section {
+        justify-content: center; /* Center items on larger screens */
+    }
+
+    .best-sellers-section .card {
+        width: 700px; /* Set card width for larger screens */
+    }
+}
 /* Footer */
 footer {
     background-color: #000;
@@ -255,6 +324,16 @@ footer button:hover {
     background-color: #f9f9f9;
 }
 
+.hidden {
+    display: none;
+}
+
+#account-page {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border: 1px solid #ddd;
+}
+
 .profile {
     text-align: center;
     margin-bottom: 2rem;
@@ -276,7 +355,7 @@ footer button:hover {
 .wishlist-items {
     display: flex;
     flex-wrap: nowrap;
-    overflow-x: auto; /* Enable horizontal scrolling */
+    overflow-x: auto;
     gap: 1rem;
 }
 
@@ -307,7 +386,7 @@ footer button:hover {
 /* Make the wishlist and bag sections scrollable */
 .wishlist-items, .bag-items {
     display: flex;
-    overflow-x: auto; /* Enables horizontal scrolling */
+    overflow-x: auto;
     gap: 10px;
     padding: 10px;
     white-space: nowrap;
@@ -321,7 +400,6 @@ footer button:hover {
     scroll-snap-align: start;
 }
 
-/* Hide scrollbar for a cleaner look */
 .wishlist-items::-webkit-scrollbar, .bag-items::-webkit-scrollbar {
     display: none;
 }
@@ -340,7 +418,7 @@ footer button:hover {
     padding: 0.5rem;
 }
 
-/* !!!Catalog Page!!! */
+/* Catalog Page */
 .catalog-container {
     width: 90%;
     max-width: 1200px;
@@ -401,50 +479,45 @@ footer button:hover {
     transform: scale(1.05);
 }
 
-@media (max-width: 768px) {
-    .category-grid_catalog {
-        display: flex;
-        overflow-x: auto;
-        gap: 15px;
-        scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch;
-    }
-    .category-grid_catalog img {
-        flex: 0 0 auto;
-        width: 60%;
-        scroll-snap-align: center;
-    }
-}
-
-@media (max-width: 480px) {
-    .category-grid_catalog {
-        display: flex;
-        overflow-x: auto;
-        gap: 10px;
-        scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch;
-    }
-    .category-grid_catalog img {
-        flex: 0 0 auto;
-        width: 50%;
-        scroll-snap-align: center;
-    }
-}
-
-/* !!! New Arrivals !!! */
-.new-arrivals-container {
-    width: 90%;
-    max-width: 1200px;
-    margin: auto;
+/* New Arrivals Section */
+.new-arrivals-section .container {
+    display: flex;
+    overflow-x: auto;
+    gap: 20px; /* Adjust the gap between images as needed */
     padding: 20px;
+    white-space: nowrap; /* Prevents wrapping of flex items */
+    scroll-behavior: smooth; /* Smooth scrolling */
+    -webkit-overflow-scrolling: touch; /* Enable momentum scrolling on iOS */
 }
 
-.new-arrivals-container h1 {
-    text-align: center;
-    font-size: 24px;
-    color: #f9f9f9;
-    font-family: Arial, Helvetica, sans-serif;
+.new-arrivals-section .card {
+    flex: 0 0 auto; /* Prevent the cards from shrinking */
+    width: 500px; /* Increase the width to make images larger */
+    height: auto;
 }
+
+.new-arrivals-section .card img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px; /* Optional: Add rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow effect */
+}
+
+/* Optional: Add scrollbar styling for WebKit browsers */
+.new-arrivals-section .container::-webkit-scrollbar {
+    height: 10px;
+}
+
+.new-arrivals-section .container::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 10px;
+}
+
+.new-arrivals-section .container::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+}
+
+/* New Arrivals Banner */
 
 .na-banner {
     position: relative;
@@ -471,6 +544,7 @@ footer button:hover {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+/* Product List */
 .product-list_na {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -510,6 +584,7 @@ footer button:hover {
     border-radius: 5px;
     font-weight: bold;
 }
+
 .view-details:hover {
     background-color: #ffb6c1;
 }
@@ -533,4 +608,23 @@ footer button:hover {
     .product-details_na {
         flex-grow: 1;
     }
+}
+
+
+/* Social Links */
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.social-links a img {
+    width: 40px;
+    height: 40px;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.social-links a img:hover {
+    transform: scale(1.1);
+    filter: brightness(1.2);
 }
