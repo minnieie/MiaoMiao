@@ -637,6 +637,75 @@ footer button:hover {
     display: block;
 }
 
+/* !!! Newsletter !!!*/
+.newsletter {
+    width: 90%;
+    max-width: 400px;
+    margin: auto;
+    margin-top: 6%;
+    text-align: center;
+    padding: 40px 20px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.newsletter h2 {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.newsletter label {
+    display: block;
+    font-weight: bold;
+    text-align: left;
+    margin: 10px 0 5px;
+}
+
+.newsletter input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    text-align: left;
+    gap: 8px;
+    margin: 15px 0;
+}
+
+.checkbox-container input {
+    width: 16px;
+    height: 16px;
+}
+
+.checkbox-container label {
+    font-size: 14px;
+    font-weight: normal;
+}
+
+.join-btn {
+    width: 100%;
+    background-color: pink;
+    color: black;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 12px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.join-btn:hover {
+    background-color: #ffb6c1;
+}
+
+
 /* About Us */
 /* About Miaomiao Section */
 .about-miaomiao {
