@@ -918,6 +918,65 @@ footer button:hover {
     height: 150px;
     border-radius: 5px;
 }
+
+/* Create Account section styling */
+.create-account-section {
+    width: 100%;
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow-y: scroll;
+    height: 80vh; /* This allows scrolling */
+}
+
+/* Form inputs and button styling */
+.create-account-section input {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.create-account-section button {
+    width: 100%;
+    padding: 12px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 16px;
+}
+
+.create-account-section button:hover {
+    background-color: #555;
+}
+
+/* Additional text styling */
+.create-account-section h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.create-account-section p {
+    text-align: center;
+}
+
+.create-account-section a {
+    color: #333;
+    text-decoration: none;
+}
+
+.create-account-section a:hover {
+    text-decoration: underline;
+}
 /* Social Links */
 .social-links {
     display: flex;

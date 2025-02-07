@@ -211,3 +211,28 @@ function toggleMenu() {
     var menu = document.getElementById("dropdown");
     menu.classList.toggle("show");
 }
+
+/*newsletter*/
+/// Function to show the thank you message when the button is clicked
+function showThankYouMessage() {
+    var emailInput = document.getElementById('email');
+    var thankYouMessage = document.getElementById('thankYouMessage');
+    var joinButton = document.querySelector('.join-btn');
+    var thankYouText = document.getElementById('thankYouText');
+
+    // Check if email input is not empty
+    if (emailInput.value !== "") {
+        // Hide the button and show the thank you message with user's email
+        joinButton.style.display = "none"; // Hide the JOIN NOW button
+        thankYouMessage.style.display = "block"; // Show the thank you message
+        thankYouText.textContent = `Thank you, ${emailInput.value}, for subscribing!`; // Personalized message
+    } else {
+        alert("Please enter a valid email or username!");
+    }
+}
+
+// Function to toggle the navigation menu (if used)
+function toggleMenu() {
+    var menu = document.getElementById("dropdown");
+    menu.classList.toggle("show");
+}

@@ -48,7 +48,12 @@
             <label for="subscribe">Sign up for email updates and offers from MiaoMiao</label>
         </div>
     
-        <button class="join-btn">JOIN NOW</button>
+        <button class="join-btn" onclick="showThankYouMessage()">JOIN NOW</button>
+
+        <!-- Hidden Thank You Message -->
+        <div id="thankYouMessage" style="display: none;">
+            <h3 id="thankYouText"></h3> <!-- Dynamic Thank You Message -->
+        </div>
     </section>
     
 </body>
