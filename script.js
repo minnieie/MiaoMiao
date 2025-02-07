@@ -2,15 +2,15 @@ document.getElementById("menu-toggle").addEventListener("click", function() {
     var menu = document.getElementById("menu");
     menu.style.display = (menu.style.display === "block") ? "none" : "block";
 });
-function toggleMenu() {
-    var menu = document.getElementById("nav-menu");
-    menu.classList.toggle("show");
-}
+// function toggleMenu() {
+//     var menu = document.getElementById("nav-menu");
+//     menu.classList.toggle("show");
+// }
 
-function toggleModal() {
-    var modal = document.getElementById("login-modal");
-    modal.classList.toggle("hidden");
-}
+// function toggleModal() {
+//     var modal = document.getElementById("login-modal");
+//     modal.classList.toggle("hidden");
+// }
 
 document.getElementById('account-icon').addEventListener('click', function(event) {
     event.preventDefault();
@@ -206,3 +206,8 @@ window.onload = function () {
     document.getElementById("productDetailPopup").style.display = "none";
     document.getElementById("overlay").style.display = "none";
 };
+
+function toggleMenu() {
+    var menu = document.getElementById("dropdown");
+    menu.classList.toggle("show");
+}

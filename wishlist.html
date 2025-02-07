@@ -9,29 +9,31 @@
     <script defer src="script.js"></script>
 </head>
 <body>
-    <!-- Navigation -->
-    <header>
-        <nav>
-            <a href="index.html">
-                <img src="figmaPics/logo.png" alt="MiaoMiao Logo" class="logo">
-            </a>
-            <div class="menu-icon" onclick="toggleMenu()">
-                &#9776; <!-- Hamburger icon -->
-            </div>
-            <ul id="nav-menu">
-                <li><a href="index.html">Home</a></li> 
-                <li><a href="Catalog.html">Catalog</a></li>
-                <li><a href="vouchers.html">Vouchers & Discounts</a></li>
-                <li><a href="tierlist.html">MiaoMiao Pass</a></li>
-                <li><a href="account.html">Account</a></li>
-                <li><a href="cart.html">Bag</a></li>
-                <li><a href="wishlist.html">Wishlists</a></li>
-                <li><a href="about.html">About Us</a></li>
-            </ul>
-            <div class="nav-icons">
-                <a href="account.html"><i class="fas fa-user"></i></a>
-                <a href="wishlist.html"><i class="fas fa-heart"></i></a>
-                <a href="cart.html"><i class="fas fa-shopping-cart"></i></a>
-            </div>
-        </nav>
-    </header>
+    <!-- Nav Bar -->
+    <nav class="navbar">
+        <!-- Hamburger Button -->
+        <div class="nav-menu-icon" onclick="toggleMenu()">
+            <img src="figmaPics/hamburger.png" alt="Menu">
+        </div>
+
+        <!-- Logo -->
+        <div class="nav-logo">
+            <a href="index.html"><img src="figmaPics/logo.png" alt="Logo"></a>
+        </div>
+
+        <!-- Right Icons -->
+        <div class="nav-3icons">
+            <a href="account.html"><img src="figmaPics/account.png" alt="Account"></a>
+            <a href="wishlist.html"><img src="figmaPics/heart.png" alt="Wishlist"></a>
+            <a href="bag.html"><img src="figmaPics/cart.png" alt="Bag"></a>
+        </div>
+    </nav>
+
+    <!-- Dropdown Menu -->
+    <div class="nav-dropdown-menu" id="dropdown">
+        <a href="index.html">Homepage</a>
+        <a href="catalog.html">Catalog</a>
+        <a href="vouchers.html">Vouchers & Discounts</a>
+        <a href="miaomiaopass.html">Miaomiao Pass</a>
+        <a href="aboutus.html">About Us</a> 
+    </div>
