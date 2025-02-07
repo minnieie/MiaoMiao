@@ -557,6 +557,7 @@ footer button:hover {
     width: 100%;
     height: auto;
     border-radius: 10px;
+    z-index: 1000;
 }
 
 .na-banner-text {
@@ -573,11 +574,163 @@ footer button:hover {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+/* Nav Bar */
+/* General Navbar Styling */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fcecec; /* Light pink background */
+    padding: 10px 20px;
+    position: relative;
+}
+
+/* Hamburger Menu Icon */
+.nav-menu-icon img {
+    width: 30px;
+    cursor: pointer;
+}
+
+/* Logo */
+.nav-logo img {
+    width: 50px;
+}
+
+/* Right Icons */
+.nav-3icons {
+    display: flex;
+    gap: 15px;
+}
+
+.nav-3icons img {
+    width: 25px;
+    cursor: pointer;
+}
+
+/* Dropdown Menu Styling */
+.nav-dropdown-menu {
+    display: none; /* Initially hidden */
+    position: absolute;
+    top: 60px;
+    left: 10px;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    width: 200px;
+    z-index: 1000;
+}
+
+.nav-dropdown-menu a {
+    display: block;
+    padding: 12px;
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.-nav-dropdown-menu a:hover {
+    background: #ffb6c1;
+}
+
+/* Show Dropdown When Active */
+.show {
+    display: block;
+}
+
+/* About Us */
+/* About Miaomiao Section */
+.about-miaomiao {
+    text-align: center;
+    padding: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.miaomiao-logo {
+    width: 150px;
+    display: block;
+    margin: 0 auto;
+}
+
+.about-miaomiao h2 {
+    font-size: 24px;
+    margin-top: 10px;
+}
+
+.about-miaomiao p {
+    max-width: 600px;
+    margin: 10px auto;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/* Creators Section */
+.creators {
+    text-align: center;
+    padding: 20px;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.creators h2{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.creator-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.creator {
+    background: #fcecec;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.creator img {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 10px;
+}
+
+.creator-info {
+    margin-top: 10px;
+}
+
+/* Desktop Layout */
+@media (min-width: 768px) {
+    .about-miaomiao p {
+        font-size: 18px;
+    }
+
+    .creator-container {
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .creator {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .creator img {
+        width: 100%;
+        max-width: 250px;
+    }
+}
+
+
 /* Product List */
 .product-list_na {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 20px;
+    width: 90%;
+    margin: 0 auto;
 }
 
 .product_na {
