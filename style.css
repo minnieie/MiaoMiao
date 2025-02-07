@@ -3,9 +3,7 @@ html, body {
     overflow-x: hidden;
     width: 100%;
     margin: 0;
-    font-family: 'Comic Sans MS', Arial, sans-serif;
-    background-color: #000000;
-}
+    font-family: 'Comic Sans MS', Arial, sans-serif;}
 
 * {
     box-sizing: border-box;
@@ -80,21 +78,17 @@ nav {
         display: none; /* Hide hamburger icon */
     }
 }
-/* Main Content */
-main {
-    background-color: #000000;
-    padding: 1rem;
-}
 
 /* Section Headers */
 .section-header {
     text-align: left;
-    color: #fff;
+    color: #ffffff;
     font-size: 2rem;
     margin-bottom: 1rem;
     font-family: 'Comic Sans MS', sans-serif;
     font-weight: 600;
     padding-left: 1rem;
+    background-color: #000;
 }
 
 /* Container Styles */
@@ -106,7 +100,6 @@ main {
     white-space: nowrap;
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
-    background-color: #000000;
 }
 
 .container::-webkit-scrollbar {
@@ -139,6 +132,7 @@ main {
     white-space: nowrap;
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
+    background-color: #000;
 }
 
 .featured-section .card {
@@ -162,7 +156,6 @@ main {
     overflow-x: auto; /* Enable horizontal scrolling */
     gap: 1rem;
     padding: 1rem;
-    background-color: #000000; /* Ensure containers have a black background */
 }
 
 
@@ -417,7 +410,6 @@ footer button:hover {
 .newsletter-signup input {
     padding: 0.5rem;
 }
-
 /* Catalog Page */
 .catalog-container {
     width: 90%;
@@ -442,8 +434,8 @@ footer button:hover {
     top: 80%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
+    background-color: rgba(255, 255, 255, 0.5);
+    color: rgb(0, 0, 0);
     padding: 10px 20px;
     font-size: 24px;
     font-weight: bold;
@@ -458,27 +450,63 @@ footer button:hover {
 .category_catalog h2 {
     font-size: 22px;
     margin-bottom: 10px;
-    color: #f9f9f9;
+    color: #000000;
     font-family: Arial, Helvetica, sans-serif;
 }
 
+/* Horizontal Scroll Layout for Desktop */
 .category-grid_catalog {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    display: flex;
+    overflow-x: auto;  /* Horizontal scrolling */
     gap: 15px;
+    scroll-snap-type: x mandatory;  /* Optional snapping behavior */
+    -webkit-overflow-scrolling: touch;  /* Smooth scrolling on mobile */
+    padding-bottom: 10px;  /* Extra padding to prevent cutoff on mobile */
 }
 
+/* Image styles */
 .category-grid_catalog img {
-    width: 100%;
+    width: 280px;  /* Enlarged image size for desktop */
     height: auto;
     border-radius: 10px;
     transition: transform 0.3s ease;
+    flex: 0 0 auto;  /* Prevent images from stretching */
+    scroll-snap-align: start;  /* Optional for snapping behavior */
 }
 
+/* Hover effect for desktop */
 .category-grid_catalog img:hover {
     transform: scale(1.05);
 }
 
+/* Mobile-specific adjustments */
+@media (max-width: 768px) {
+    .category-grid_catalog {
+        display: flex;
+        overflow-x: auto;  /* Horizontal scrolling */
+        gap: 15px;
+        scroll-snap-type: x mandatory;  /* Optional snapping behavior */
+        -webkit-overflow-scrolling: touch;  /* Smooth scrolling on mobile */
+        padding-bottom: 10px;  /* Extra padding to prevent cutoff on mobile */
+    }
+
+    .category-grid_catalog img {
+        width: 80%;  /* Adjust size for mobile screens */
+        flex: 0 0 auto;  /* Prevent images from stretching */
+        margin-right: 15px;  /* Space between images */
+    }
+}
+
+@media (max-width: 480px) {
+    .category-grid_catalog img {
+        width: 70%;  /* Further reduce image size for smaller screens */
+    }
+
+    .banner-text {
+        font-size: 18px;  /* Smaller text for mobile */
+        padding: 5px 10px;  /* Smaller padding for mobile */
+    }
+}
 /* New Arrivals Section */
 .new-arrivals-section .container {
     display: flex;
@@ -488,6 +516,7 @@ footer button:hover {
     white-space: nowrap; /* Prevents wrapping of flex items */
     scroll-behavior: smooth; /* Smooth scrolling */
     -webkit-overflow-scrolling: touch; /* Enable momentum scrolling on iOS */
+    background-color: #000;
 }
 
 .new-arrivals-section .card {
@@ -536,7 +565,7 @@ footer button:hover {
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: rgba(0, 0, 0, 0.5);
-    color: white;
+    color: rgb(255, 255, 255);
     padding: 10px 20px;
     font-size: 24px;
     font-weight: bold;
@@ -609,8 +638,64 @@ footer button:hover {
         flex-grow: 1;
     }
 }
+.cart-container {
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
 
+.cart-container h3 {
+    text-align: left;
+    font-size: 20px;
+    font-weight: bold;
+}
 
+.cart-container h2:nth-of-type(2) { 
+    font-size: 24px;
+    font-weight: bold; 
+    text-align: center;
+    margin-top: 10px;
+}
+
+.cart-container .empty-cart-message {
+    text-align: center;
+}
+
+.cart-container .you-might-like {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.cart-container .you-might-like h3 {
+    text-align: left;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.cart-container .you-might-like .arrow {
+    width: 20px; /* Adjust the size of the arrow */
+    height: auto;
+}
+
+.cart-container .container {
+    display: flex;
+    overflow-x: auto;
+    gap: 10px;
+    padding: 10px 0;
+    scrollbar-width: thin;
+    justify-content: center;
+}
+
+.cart-container .container img {
+    height: 150px;
+    border-radius: 5px;
+}
 /* Social Links */
 .social-links {
     display: flex;
