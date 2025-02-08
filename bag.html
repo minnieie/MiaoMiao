@@ -32,19 +32,19 @@
   <a href="miaomiaopass.html">Miaomiao Pass</a>
   <a href="aboutus.html">About Us</a> 
 </div>
+
 <main class="cart-container">
-  <h3>Home/Your Bag</h3>
+  <h3>Home / Your Bag</h3>
   <h2>Your Bag (<span id="cartItemCount">0</span> items)</h2>
   <hr>
   <div id="cartItemsContainer">
     <p class="empty-cart-message">Your bag is empty</p>
   </div>
   <hr>
-  <div class="total-price">
-    <p>Total: $<span id="totalPrice">0.00</span></p>
-  </div>
+  <h3>Total Price: <span id="totalPrice">$0.00</span></h3> <!-- Total price display -->
   <a href="checkout.html"><button class="checkout-button">Proceed to Checkout</button></a>
 </main>
+
 <!-- Footer -->
 <aside class="newsletter-signup">
   <h2>SIGN UP FOR JOY DELIVERED TO YOUR INBOX</h2>
@@ -56,69 +56,79 @@
     <a href="#"><img src="figmaPics/x.png" alt="Twitter"></a>
   </div>
 </aside>
+
 <script>
-  function toggleMenu() {
-    var menu = document.getElementById("dropdown");
-    menu.classList.toggle("show");
-  }
-
-  // Load bag items from localStorage and display them
-  function loadBagItems() {
-    const bagContents = document.getElementById('cartItemsContainer');
-    const cartItemCount = document.getElementById('cartItemCount');
-    const totalPrice = document.getElementById('totalPrice');
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    bagContents.innerHTML = '';
-    if (cart.length === 0) {
-      bagContents.innerHTML = '<p class="empty-cart-message">Your bag is empty</p>';
-      totalPrice.textContent = '0.00';
-    } else {
-      let total = 0;
-      cart.forEach((product, index) => {
-        const productDiv = document.createElement('div');
-        productDiv.className = 'cart-item';
-        productDiv.innerHTML = `
-          <img src="${product.imageUrl}" alt="${product.title}" />
-          <div class="cart-item-info">
-            <h3>${product.title}</h3>
-            <p>${product.price}</p>
-            <div class="quantity-controls">
-              <button onclick="updateQuantity(${index}, -1)">-</button>
-              <span>Quantity: ${product.quantity}</span>
-              <button onclick="updateQuantity(${index}, 1)">+</button>
-            </div>
-            <button onclick="removeItem(${index})" class="remove-item">Remove</button>
-          </div>
-        `;
-        bagContents.appendChild(productDiv);
-        total += parseFloat(product.price) * product.quantity;
-      });
-      totalPrice.textContent = total.toFixed(2);
+    function toggleMenu() {
+        var menu = document.getElementById("dropdown");
+        menu.classList.toggle("show");
     }
-    cartItemCount.textContent = cart.reduce((total, item) => total + item.quantity, 0);
-  }
 
-  // Update item quantity in the cart
-  function updateQuantity(index, change) {
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    if (cart[index]) {
-      cart[index].quantity += change;
-      if (cart[index].quantity <= 0) cart[index].quantity = 1; // Prevent quantity from going below 1
-      localStorage.setItem('cart', JSON.stringify(cart));
-      loadBagItems(); // Reload the cart
+    // Load bag items from localStorage and display them
+    function loadBagItems() {
+        const bagContents = document.getElementById('cartItemsContainer');
+        const cartItemCount = document.getElementById('cartItemCount');
+        const totalPriceElement = document.getElementById('totalPrice');
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        bagContents.innerHTML = '';
+
+        let totalPrice = 0;
+
+        if (cart.length === 0) {
+            bagContents.innerHTML = '<p class="empty-cart-message">Your bag is empty</p>';
+        } else {
+            cart.forEach((product, index) => {
+                let price = parseFloat(product.price);
+                if (isNaN(price) || price <= 0) {
+                    price = 0;
+                }
+
+                const productTotal = price * product.quantity;
+                totalPrice += productTotal;
+
+                const productDiv = document.createElement('div');
+                productDiv.className = 'cart-item';
+                productDiv.innerHTML = `
+                    <img src="${product.imageUrl}" alt="${product.title}" />
+                    <div class="cart-item-info">
+                        <h3>${product.title}</h3>
+                        <p>$${price.toFixed(2)}</p>
+                        <div class="quantity-controls">
+                            <button onclick="updateQuantity(${index}, -1)">-</button>
+                            <span>Quantity: ${product.quantity}</span>
+                            <button onclick="updateQuantity(${index}, 1)">+</button>
+                        </div>
+                        <button onclick="removeItem(${index})" class="remove-item">Remove</button>
+                    </div>
+                `;
+                bagContents.appendChild(productDiv);
+            });
+        }
+
+        cartItemCount.textContent = cart.reduce((total, item) => total + item.quantity, 0);
+        totalPriceElement.textContent = `$${totalPrice.toFixed(2)}`;
     }
-  }
 
-  // Remove item from the cart
-  function removeItem(index) {
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    cart.splice(index, 1); // Remove the item at the specified index
-    localStorage.setItem('cart', JSON.stringify(cart));
-    loadBagItems(); // Reload the cart
-  }
+    // Update item quantity in the cart
+    function updateQuantity(index, change) {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        if (cart[index]) {
+            cart[index].quantity += change;
+            if (cart[index].quantity <= 0) cart[index].quantity = 1;
+            localStorage.setItem('cart', JSON.stringify(cart));
+            loadBagItems();
+        }
+    }
 
-  // Load bag items on page load
-  window.onload = loadBagItems;
+    // Remove item from the cart
+    function removeItem(index) {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        cart.splice(index, 1);
+        localStorage.setItem('cart', JSON.stringify(cart));
+        loadBagItems();
+    }
+
+    window.onload = loadBagItems;
 </script>
 </body>
 </html>
+

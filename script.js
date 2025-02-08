@@ -5,7 +5,7 @@ let totalPrice = 0; // Total price of items in cart
 function showProductDetail(title, price, imageSrc) {
   console.log("Showing product detail for:", title);
   document.getElementById("popupTitle").textContent = title;
-  document.getElementById("popupPrice").textContent = `S$${parseFloat(price).toFixed(2)}`; // Ensure price is parsed as a float
+  document.getElementById("popupPrice").textContent = S$${parseFloat(price).toFixed(2)}; // Ensure price is parsed as a float
   document.getElementById("popupImage").src = imageSrc;
   document.getElementById("productDetailPopup").style.display = "block";
   document.getElementById("overlay").style.display = "block";
@@ -61,7 +61,7 @@ function showCartConfirmation() {
   totalPrice = cart.reduce((total, item) => {
     const itemPrice = parseFloat(item.price);
     if (isNaN(itemPrice)) {
-      console.error(`Invalid price for item: ${item.title}`);
+      console.error(Invalid price for item: ${item.title});
       return total; // Skip invalid items
     }
     return total + (itemPrice * item.quantity);
@@ -92,9 +92,9 @@ function removeItem(title) {
   cart = cart.filter(item => item.title !== title);
   localStorage.setItem('cartItems', JSON.stringify(cart));
   if (cart.length < initialLength) {
-    console.log(`Removed item: ${title}`);
+    console.log(Removed item: ${title});
   } else {
-    console.error(`Item not found in cart: ${title}`);
+    console.error(Item not found in cart: ${title});
   }
   showCartConfirmation();
 }
@@ -202,6 +202,6 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener("DOMContentLoaded", () => {
   const addToBagButton = document.getElementById("addToBagButton");
   if (addToBagButton) {
-    addToBagButton.addEventListener("click", () => {
+    addToBagButton.addEventListener("click",) () => {
       // Get product details
       const title = document.getElementById("productTitle")}}})

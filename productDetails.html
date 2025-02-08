@@ -1,130 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Details - MiaoMiao Store</title>
-    <link rel="stylesheet" href="style.css">
-    <script defer src="script.js"></script> 
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Details - MiaoMiao Store</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="script.js"></script> 
 </head>
 <body>
-    <!-- Nav Bar -->
-    <nav class="navbar">
-        <!-- Hamburger Button -->
-        <div class="nav-menu-icon" onclick="toggleMenu()">
-            <img src="figmaPics/hamburger.png" alt="Menu">
-        </div>
-
-        <!-- Logo -->
-        <div class="nav-logo">
-            <a href="index.html"><img src="figmaPics/logo.png" alt="Logo"></a>
-        </div>
-
-        <!-- Right Icons -->
-        <div class="nav-3icons">
-            <a href="createacc.html"><img src="figmaPics/account.png" alt="Account"></a>
-            <a href="wishlist.html"><img src="figmaPics/heart.png" alt="Wishlist"></a>
-            <a href="bag.html"><img src="figmaPics/cart.png" alt="Bag"></a>
-        </div>
-    </nav>
-
-    <!-- Dropdown Menu -->
-    <div class="nav-dropdown-menu" id="dropdown">
-        <a href="index.html">Homepage</a>
-        <a href="catalog.html">Catalog</a>
-        <a href="vouchers.html">Vouchers & Discounts</a>
-        <a href="miaomiaopass.html">Miaomiao Pass</a>
-        <a href="aboutus.html">About Us</a> 
+<!-- Nav Bar -->
+<nav class="navbar">
+  <div class="nav-menu-icon" onclick="toggleMenu()">
+    <img src="figmaPics/hamburger.png" alt="Menu">
+  </div>
+  <div class="nav-logo">
+    <a href="index.html"><img src="figmaPics/logo.png" alt="Logo"></a>
+  </div>
+  <div class="nav-3icons">
+    <a href="createacc.html"><img src="figmaPics/account.png" alt="Account"></a>
+    <a href="wishlist.html"><img src="figmaPics/heart.png" alt="Wishlist"></a>
+    <a href="bag.html"><img src="figmaPics/cart.png" alt="Bag"></a>
+  </div>
+</nav>
+<div class="nav-dropdown-menu" id="dropdown">
+  <a href="index.html">Homepage</a>
+  <a href="catalog.html">Catalog</a>
+  <a href="vouchers.html">Vouchers & Discounts</a>
+  <a href="miaomiaopass.html">Miaomiao Pass</a>
+  <a href="aboutus.html">About Us</a> 
+</div>
+<section class="product-details">
+  <div class="product-container">
+    <img id="productImage" alt="Product Image" class="product-image">
+    <h2 id="productTitle"></h2>
+    <p class="price" id="productPrice"></p>
+    <button id="addToBagButton" class="add-to-bag">Add To Bag</button>
+    <button class="add-to-wishlist">Add To Wishlist</button>
+    <button class="back-btn" onclick="window.history.back()">Back</button>
+  </div>
+  
+  <div class="details-container">
+    <h3>Production Details</h3>
+    <p><strong>Material:</strong> Resin, PVC</p>
+    <p><strong>Size:</strong> Height: 15 cm (5.9 inches) <br> Width: 8 cm (3.1 inches)</p>
+    <p><strong>Description:</strong> Capture the essence of [character/scene] with this premium-quality figurine. Perfect for fans, collectors, or as a gift!</p>
+    <p><strong>Care:</strong> Wipe gently; avoid sunlight and moisture.</p>
+    <p><small>* Due to differences in measurement methods, the actual measurement may vary within a normal range of 0.2-0.4 inches.</small></p>
+  </div>
+  
+  <div class="reviews-container">
+    <h3>Customer Reviews <a href="reviews.html"><span class="view-all">View All</span></a></h3>
+    <div class="review">
+      <img src="figmaPics/customer1.png" alt="Paul">
+      <div>
+        <p class="reviewer-name">PAUL</p>
+        <p class="stars">★★★★☆</p>
+        <p class="review-text">"Incredible detailing! The paint job is flawless. A must-have for any collector!"</p>
+      </div>
     </div>
+    <div class="review">
+      <img src="figmaPics/customer2.png" alt="Kimberly">
+      <div>
+        <p class="reviewer-name">KIMBERLY</p>
+        <p class="stars">★★★★★</p>
+        <p class="review-text">"Good quality, but the packaging could be better. The details are amazing!"</p>
+      </div>
+    </div>
+    <div class="review">
+      <img src="figmaPics/customer3.png" alt="Jasmine">
+      <div>
+        <p class="reviewer-name">JASMINE</p>
+        <p class="stars">★★★★☆</p>
+        <p class="review-text">"Decent figurine for the price, but the paint job isn't flawless. Still, it looks great from a distance!"</p>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // Retrieve product details from localStorage
+  const title = localStorage.getItem('productTitle');
+  let price = localStorage.getItem('productPrice');
+  const imageUrl = localStorage.getItem('productImageUrl');
+  console.log("Loaded product details:", { title, price, imageUrl });
 
-    <section class="product-details">
-        <div class="product-container">
-            <img id="productImage" alt="Product Image" class="product-image">
-            <h2 id="productTitle"></h2>
-            <p class="price" id="productPrice"></p>
-            <button id="addToBagButton" class="add-to-bag">Add To Bag</button>
-            <button class="add-to-wishlist">Add To Wishlist</button>
-            <button class="back-btn">Back</button>
-        </div>
-    
-        <div class="details-container">
-            <h3>Production Details</h3>
-            <p><strong>Material:</strong> Resin, PVC</p>
-            <p><strong>Size:</strong> Height: 15 cm (5.9 inches) <br> Width: 8 cm (3.1 inches)</p>
-            <p><strong>Description:</strong> Capture the essence of [character/scene] with this premium-quality figurine. Perfect for fans, collectors, or as a gift!</p>
-            <p><strong>Care:</strong> Wipe gently; avoid sunlight and moisture.</p>
-            <p><small>* Due to differences in measurement methods, the actual measurement may vary within a normal range of 0.2-0.4 inches.</small></p>
-        </div>
-    
-        <div class="reviews-container">
-            <h3>Customer Reviews <a href="reviews.html"><span class="view-all">View All</span></a></h3>
-            <div class="review">
-                <img src="figmaPics/customer1.png" alt="Paul">
-                <div>
-                    <p class="reviewer-name">PAUL</p>
-                    <p class="stars">★★★★☆</p>
-                    <p class="review-text">"Incredible detailing! The paint job is flawless. A must-have for any collector!"</p>
-                </div>
-            </div>
-    
-            <div class="review">
-                <img src="figmaPics/customer2.png" alt="Kimberly">
-                <div>
-                    <p class="reviewer-name">KIMBERLY</p>
-                    <p class="stars">★★★★★</p>
-                    <p class="review-text">"Good quality, but the packaging could be better. The details are amazing!"</p>
-                </div>
-            </div>
-    
-            <div class="review">
-                <img src="figmaPics/customer3.png" alt="Jasmine">
-                <div>
-                    <p class="reviewer-name">JASMINE</p>
-                    <p class="stars">★★★★☆</p>
-                    <p class="review-text">"Decent figurine for the price, but the paint job isn't flawless. Still, it looks great from a distance!"</p>
-                </div>
-            </div>
-        </div>
-    </section>
+  // Ensure price is a valid number
+  if (price) {
+    price = parseFloat(price.replace(/[^0-9.]/g, "")); // Ensure valid numeric value
+    if (isNaN(price) || price <= 0) {
+      console.warn(`Invalid price for ${title}, defaulting to 1.00`);
+      price = 1.00; // Default to a minimum price of 1.00
+    }
+    price = price.toFixed(2);
+  } else {
+    price = "1.00"; // Default fallback if price is missing
+  }
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const title = localStorage.getItem('productTitle');
-            const price = localStorage.getItem('productPrice');
-            const imageUrl = localStorage.getItem('productImageUrl');
+  if (title && imageUrl) {
+    document.getElementById('productTitle').textContent = title;
+    document.getElementById('productPrice').textContent = `$${price}`;
+    document.getElementById('productImage').src = imageUrl;
+  } else {
+    console.error("Product data is missing in localStorage.");
+  }
 
-            if (title && price && imageUrl) {
-                document.getElementById('productTitle').textContent = title;
-                document.getElementById('productPrice').textContent = price;
-                document.getElementById('productImage').src = imageUrl;
-            }
+  // Add to Bag functionality
+  const addToBagButton = document.getElementById('addToBagButton');
+  addToBagButton.addEventListener('click', () => {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const product = {
+      title: title,
+      price: parseFloat(price), // Ensure the price is a valid number
+      imageUrl: imageUrl,
+      quantity: 1,
+    };
+    const existingProductIndex = cart.findIndex(item => item.title === title);
+    if (existingProductIndex > -1) {
+      cart[existingProductIndex].quantity += 1;
+    } else {
+      cart.push(product);
+    }
+    localStorage.setItem('cart', JSON.stringify(cart));
+    alert(`${title} has been added to your bag!`);
+  });
+});
 
-            const addToBagButton = document.getElementById('addToBagButton');
-            addToBagButton.addEventListener('click', () => {
-                let cart = JSON.parse(localStorage.getItem('cart')) || [];
-                const product = {
-                    title: title,
-                    price: price,
-                    imageUrl: imageUrl,
-                    quantity: 1,
-                };
-                
-                const existingProductIndex = cart.findIndex(item => item.title === title);
-                if (existingProductIndex > -1) {
-                    cart[existingProductIndex].quantity += 1; // Increment quantity if product already in cart
-                } else {
-                    cart.push(product);
-                }
-
-                localStorage.setItem('cart', JSON.stringify(cart));
-                alert(`${title} has been added to your bag!`);
-            });
-        });
-
-        function toggleMenu() {
-            var menu = document.getElementById("dropdown");
-            menu.classList.toggle("show");
-        }
-    </script>
+function toggleMenu() {
+  var menu = document.getElementById("dropdown");
+  menu.classList.toggle("show");
+}
+</script>
 </body>
 </html>
