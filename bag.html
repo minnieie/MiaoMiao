@@ -14,17 +14,12 @@
 
 <!-- Nav Bar -->
 <nav class="navbar">
-    <!-- Hamburger Button -->
     <div class="nav-menu-icon" onclick="toggleMenu()">
         <img src="figmaPics/hamburger.png" alt="Menu">
     </div>
-
-    <!-- Logo -->
     <div class="nav-logo">
         <a href="index.html"><img src="figmaPics/logo.png" alt="Logo"></a>
     </div>
-
-    <!-- Right Icons -->
     <div class="nav-3icons">
         <a href="createacc.html"><img src="figmaPics/account.png" alt="Account"></a>
         <a href="wishlist.html"><img src="figmaPics/heart.png" alt="Wishlist"></a>
@@ -32,7 +27,6 @@
     </div>
 </nav>
 
-<!-- Dropdown Menu -->
 <div class="nav-dropdown-menu" id="dropdown">
     <a href="index.html">Homepage</a>
     <a href="catalog.html">Catalog</a>
@@ -49,19 +43,8 @@
         <p class="empty-cart-message">Your bag is empty</p>
     </div>
     <hr>
-
-    <div class="you-might-like">
-        <h3>You might like</h3>
-        <img src="figmaPics/arrow.png" alt="Arrow" class="arrow">
-    </div>
-    
-    <div class="container">
-        <img src="figmaPics/newArrival2.jpg" alt="Product 1">
-        <img src="figmaPics/newArrival3.jpg" alt="Product 2">
-        <img src="figmaPics/newArrival4.jpg" alt="Product 3">
-        <img src="figmaPics/newArrival5.jpg" alt="Product 4">
-        <img src="figmaPics/newArrival6.jpg" alt="Product 5">
-        <img src="figmaPics/newArrival.jpg" alt="Product 6">
+    <div class="total-price">
+        <p>Total: $<span id="totalPrice">0.00</span></p>
     </div>
 </main>
 
@@ -88,13 +71,16 @@
     function loadBagItems() {
         const bagContents = document.getElementById('cartItemsContainer');
         const cartItemCount = document.getElementById('cartItemCount');
-        let bag = JSON.parse(localStorage.getItem('bag')) || [];
+        const totalPrice = document.getElementById('totalPrice');
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
         bagContents.innerHTML = '';
 
-        if (bag.length === 0) {
+        if (cart.length === 0) {
             bagContents.innerHTML = '<p class="empty-cart-message">Your bag is empty</p>';
+            totalPrice.textContent = '0.00';
         } else {
-            bag.forEach(product => {
+            let total = 0;
+            cart.forEach((product, index) => {
                 const productDiv = document.createElement('div');
                 productDiv.className = 'cart-item';
                 productDiv.innerHTML = `
@@ -102,13 +88,40 @@
                     <div class="cart-item-info">
                         <h3>${product.title}</h3>
                         <p>${product.price}</p>
+                        <div class="quantity-controls">
+                            <button onclick="updateQuantity(${index}, -1)">-</button>
+                            <span>Quantity: ${product.quantity}</span>
+                            <button onclick="updateQuantity(${index}, 1)">+</button>
+                        </div>
+                        <button onclick="removeItem(${index})" class="remove-item">Remove</button>
                     </div>
                 `;
                 bagContents.appendChild(productDiv);
+                total += product.price * product.quantity;
             });
+            totalPrice.textContent = total.toFixed(2);
         }
 
-        cartItemCount.textContent = bag.length;
+        cartItemCount.textContent = cart.reduce((total, item) => total + item.quantity, 0);
+    }
+
+    // Update item quantity in the cart
+    function updateQuantity(index, change) {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        if (cart[index]) {
+            cart[index].quantity += change;
+            if (cart[index].quantity <= 0) cart[index].quantity = 1; // Prevent quantity from going below 1
+            localStorage.setItem('cart', JSON.stringify(cart));
+            loadBagItems(); // Reload the cart
+        }
+    }
+
+    // Remove item from the cart
+    function removeItem(index) {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        cart.splice(index, 1); // Remove the item at the specified index
+        localStorage.setItem('cart', JSON.stringify(cart));
+        loadBagItems(); // Reload the cart
     }
 
     // Load bag items on page load

@@ -5,7 +5,7 @@ let totalPrice = 0; // Total price of items in cart
 function showProductDetail(title, price, imageSrc) {
     console.log("Showing product detail for:", title);
     document.getElementById("popupTitle").textContent = title;
-    document.getElementById("popupPrice").textContent = `S$${price.toFixed(2)}`;
+    document.getElementById("popupPrice").textContent = `S$${parseFloat(price).toFixed(2)}`; // Ensure price is parsed as a float
     document.getElementById("popupImage").src = imageSrc;
     document.getElementById("productDetailPopup").style.display = "block";
     document.getElementById("overlay").style.display = "block";
@@ -48,7 +48,7 @@ function showCartConfirmation() {
             <img src="${item.image}" alt="${item.title}" />
             <div class="cart-item-info">
                 <h3>${item.title}</h3>
-                <p>S$${item.price.toFixed(2)}</p>
+                <p>S$${parseFloat(item.price).toFixed(2)}</p> <!-- Ensure price is parsed as a float -->
                 <div class="quantity">
                     <button class="quantity-btn" onclick="changeQuantity('${item.title}', -1)">-</button>
                     <span>${item.quantity}</span>
@@ -61,7 +61,14 @@ function showCartConfirmation() {
     });
 
     // Recalculate total price
-    totalPrice = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+    totalPrice = cart.reduce((total, item) => {
+        const itemPrice = parseFloat(item.price);
+        if (isNaN(itemPrice)) {
+            console.error(`Invalid price for item: ${item.title}`);
+            return total; // Skip invalid items
+        }
+        return total + (itemPrice * item.quantity);
+    }, 0);
     document.getElementById("totalPrice").textContent = totalPrice.toFixed(2);
 
     updateCartIcon(); // Update the cart icon count
@@ -88,8 +95,14 @@ function changeQuantity(title, change) {
 
 // Function to remove item from cart
 function removeItem(title) {
+    const initialLength = cart.length;
     cart = cart.filter(item => item.title !== title);
     localStorage.setItem('cartItems', JSON.stringify(cart));
+    if (cart.length < initialLength) {
+        console.log(`Removed item: ${title}`);
+    } else {
+        console.error(`Item not found in cart: ${title}`);
+    }
     showCartConfirmation();
 }
 
@@ -114,7 +127,7 @@ document.getElementById("addToCartButton").addEventListener("click", function ()
     const price = parseFloat(document.getElementById("popupPrice").textContent.replace('S$', ''));
     const imageSrc = document.getElementById("popupImage").src;
 
-    if (!title || !price || !imageSrc) {
+    if (!title || isNaN(price) || !imageSrc) {
         console.error("Product details are incomplete.");
         return;
     }
@@ -129,18 +142,6 @@ document.getElementById("addToCartButton").addEventListener("click", function ()
     localStorage.setItem('cartItems', JSON.stringify(cart)); // Save updated cart to localStorage
     showCartConfirmation(); // Re-render cart with updated data
     closePopup();
-});
-
-// Event listener for "Continue Shopping" button
-document.getElementById("continueShoppingButton").addEventListener("click", closeCartPopup);
-
-// Event listener for "Go to Cart" button
-document.getElementById("goToCartButton").addEventListener("click", function () {
-    if (cart.length === 0) {
-        alert("Your cart is empty. Please add items to the cart before checking out.");
-    } else {
-        window.location.href = "bag.html"; 
-    }
 });
 
 // Function to load cart items on the cart page
@@ -159,7 +160,7 @@ function loadCartItems() {
                 <img src="${item.image}" alt="${item.title}" />
                 <div class="cart-item-info">
                     <h3>${item.title}</h3>
-                    <p>S$${item.price.toFixed(2)}</p>
+                    <p>S$${parseFloat(item.price).toFixed(2)}</p> <!-- Ensure price is parsed as a float -->
                     <div class="quantity">
                         <button class="quantity-btn" onclick="changeQuantity('${item.title}', -1)">-</button>
                         <span>${item.quantity}</span>
@@ -186,7 +187,7 @@ window.onload = function () {
     document.getElementById("overlay").style.display = "none";
 };
 
-//for productDetail page
+// For productDetail page
 function showProductDetail(title, price, imageUrl) {
     localStorage.setItem('productTitle', title);
     localStorage.setItem('productPrice', price);
@@ -206,21 +207,56 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-//Adding to bag in bag.html
-document.getElementById('addToBagButton').addEventListener('click', () => {
-    const productTitle = document.getElementById('productTitle').textContent;
-    const productPrice = document.getElementById('productPrice').textContent;
-    const productImageUrl = document.getElementById('productImage').src;
+document.addEventListener("DOMContentLoaded", () => {
+    const addToBagButton = document.getElementById("addToBagButton");
 
-    const product = {
-        title: productTitle,
-        price: productPrice,
-        imageUrl: productImageUrl
-    };
+    if (addToBagButton) {
+        addToBagButton.addEventListener("click", () => {
+            // Get product details
+            const title = document.getElementById("productTitle") ? document.getElementById("productTitle").textContent.trim() : '';
+            const price = parseFloat(document.getElementById("productPrice") ? document.getElementById("productPrice").textContent.replace('S$', '').trim() : '');
+            const imageUrl = document.getElementById("productImage") ? document.getElementById("productImage").src : '';
 
-    let bag = JSON.parse(localStorage.getItem('bag')) || [];
-    bag.push(product);
-    localStorage.setItem('bag', JSON.stringify(bag));
+            if (!title || isNaN(price) || !imageUrl) {
+                alert("Error: Missing or invalid product details!");
+                return;
+            }
 
-    alert('Product added to bag!');
+            // Get existing cart from localStorage or initialize empty array
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+            // Check if the product is already in the cart
+            let existingProduct = cart.find(item => item.title === title && item.imageUrl === imageUrl);
+
+            if (existingProduct) {
+                // If product exists, increase quantity
+                existingProduct.quantity += 1;
+                alert("Increased quantity in bag!");
+            } else {
+                // Add new product to cart
+                cart.push({ title, price, imageUrl, quantity: 1 });
+                alert("Product added to bag!");
+            }
+
+            // Save back to localStorage
+            localStorage.setItem("cart", JSON.stringify(cart));
+
+            // Update Bag UI without page refresh
+            updateBagCount();
+        });
+    }
+
+    // Function to update Bag item count (on navbar)
+    function updateBagCount() {
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        const cartItemCount = document.getElementById("cartItemCount"); // Assuming there's a span for count
+
+        if (cartItemCount) {
+            cartItemCount.textContent = totalItems;
+        }
+    }
+
+    // Initial update of Bag count
+    updateBagCount();
 });
