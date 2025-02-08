@@ -1,37 +1,3 @@
-document.getElementById("menu-toggle").addEventListener("click", function() {
-    var menu = document.getElementById("menu");
-    menu.style.display = (menu.style.display === "block") ? "none" : "block";
-});
-// function toggleMenu() {
-//     var menu = document.getElementById("nav-menu");
-//     menu.classList.toggle("show");
-// }
-
-// function toggleModal() {
-//     var modal = document.getElementById("login-modal");
-//     modal.classList.toggle("hidden");
-// }
-
-document.getElementById('account-icon').addEventListener('click', function(event) {
-    event.preventDefault();
-    toggleModal();
-});
-
-document.getElementById('login-form').addEventListener('submit', function(event) {
-    event.preventDefault();
-    // Add your login logic here
-    toggleModal();
-    // Show the account page after login
-    document.querySelector('.account-section').classList.remove('hidden');
-});
-
-function createAccount() {
-    // Add your create account logic here
-    toggleModal();
-    // Show the account page after account creation
-    document.querySelector('.account-section').classList.remove('hidden');
-}
-
 let cart = JSON.parse(localStorage.getItem('cartItems')) || []; // Load cart items from localStorage (or initialize as empty array)
 let totalPrice = 0; // Total price of items in cart
 
@@ -39,7 +5,7 @@ let totalPrice = 0; // Total price of items in cart
 function showProductDetail(title, price, imageSrc) {
     console.log("Showing product detail for:", title);
     document.getElementById("popupTitle").textContent = title;
-    document.getElementById("popupPrice").textContent = `$${price.toFixed(2)}`;
+    document.getElementById("popupPrice").textContent = `S$${price.toFixed(2)}`;
     document.getElementById("popupImage").src = imageSrc;
     document.getElementById("productDetailPopup").style.display = "block";
     document.getElementById("overlay").style.display = "block";
@@ -53,12 +19,12 @@ function closePopup() {
 
 // Function to dynamically attach click events to product items
 function attachProductDetailListeners() {
-    const productItems = document.querySelectorAll('.product-item'); // Adjust selector to your HTML
+    const productItems = document.querySelectorAll('.product_na'); // Adjust selector to your HTML
     productItems.forEach(item => {
         item.addEventListener('click', function () {
-            const title = this.getAttribute('data-title');
-            const price = parseFloat(this.getAttribute('data-price'));
-            const imageSrc = this.getAttribute('data-image');
+            const title = this.querySelector('h3').innerText;
+            const price = parseFloat(this.querySelector('.price_na').innerText.replace('S$', ''));
+            const imageSrc = this.querySelector('img').src;
 
             if (title && !isNaN(price) && imageSrc) {
                 showProductDetail(title, price, imageSrc);
@@ -82,7 +48,7 @@ function showCartConfirmation() {
             <img src="${item.image}" alt="${item.title}" />
             <div class="cart-item-info">
                 <h3>${item.title}</h3>
-                <p>$${item.price.toFixed(2)}</p>
+                <p>S$${item.price.toFixed(2)}</p>
                 <div class="quantity">
                     <button class="quantity-btn" onclick="changeQuantity('${item.title}', -1)">-</button>
                     <span>${item.quantity}</span>
@@ -145,7 +111,7 @@ function updateCartIcon() {
 // Add event listener for "Add to Cart" button
 document.getElementById("addToCartButton").addEventListener("click", function () {
     const title = document.getElementById("popupTitle").textContent;
-    const price = parseFloat(document.getElementById("popupPrice").textContent.replace('$', ''));
+    const price = parseFloat(document.getElementById("popupPrice").textContent.replace('S$', ''));
     const imageSrc = document.getElementById("popupImage").src;
 
     if (!title || !price || !imageSrc) {
@@ -173,66 +139,122 @@ document.getElementById("goToCartButton").addEventListener("click", function () 
     if (cart.length === 0) {
         alert("Your cart is empty. Please add items to the cart before checking out.");
     } else {
-        window.location.href = "cart.html"; 
+        window.location.href = "bag.html"; 
     }
 });
 
 // Function to load cart items on the cart page
 function loadCartItems() {
-    const orderItemsContainer = document.getElementById('order-items');
-    const totalFeeContainer = document.getElementById('total-fee');
-    let totalFee = 0;
+    const cartItemsContainer = document.getElementById('cartItemsContainer');
+    const cartItemCount = document.getElementById('cartItemCount');
+    cartItemsContainer.innerHTML = '';
 
-    cart.forEach(item => {
-        const itemDiv = document.createElement('div');
-        itemDiv.className = 'order-item';
-        itemDiv.innerHTML = `
-            <p>${item.title} (x${item.quantity})</p>
-            <p>$${item.price * item.quantity}</p>
-        `;
-        orderItemsContainer.appendChild(itemDiv);
-        totalFee += item.price * item.quantity;
-    });
+    if (cart.length === 0) {
+        cartItemsContainer.innerHTML = '<p class="empty-cart-message">Your bag is empty</p>';
+    } else {
+        cart.forEach(item => {
+            const cartItem = document.createElement('div');
+            cartItem.className = 'cart-item';
+            cartItem.innerHTML = `
+                <img src="${item.image}" alt="${item.title}" />
+                <div class="cart-item-info">
+                    <h3>${item.title}</h3>
+                    <p>S$${item.price.toFixed(2)}</p>
+                    <div class="quantity">
+                        <button class="quantity-btn" onclick="changeQuantity('${item.title}', -1)">-</button>
+                        <span>${item.quantity}</span>
+                        <button class="quantity-btn" onclick="changeQuantity('${item.title}', 1)">+</button>
+                    </div>
+                    <button class="remove-item" onclick="removeItem('${item.title}')">Remove</button>
+                </div>
+            `;
+            cartItemsContainer.appendChild(cartItem);
+        });
+    }
 
-    totalFeeContainer.textContent = totalFee.toFixed(2);
+    cartItemCount.textContent = cart.length;
 }
 
 // Update cart icon and attach event listeners on every page load
 window.onload = function () {
     updateCartIcon();
     attachProductDetailListeners();
+    loadCartItems();
 
     // Ensure popup is hidden on load
     document.getElementById("productDetailPopup").style.display = "none";
     document.getElementById("overlay").style.display = "none";
 };
 
-function toggleMenu() {
-    var menu = document.getElementById("dropdown");
-    menu.classList.toggle("show");
-}
-
-/*newsletter*/
-/// Function to show the thank you message when the button is clicked
+// Newsletter functionality
 function showThankYouMessage() {
     var emailInput = document.getElementById('email');
     var thankYouMessage = document.getElementById('thankYouMessage');
     var joinButton = document.querySelector('.join-btn');
     var thankYouText = document.getElementById('thankYouText');
 
-    // Check if email input is not empty
     if (emailInput.value !== "") {
-        // Hide the button and show the thank you message with user's email
-        joinButton.style.display = "none"; // Hide the JOIN NOW button
-        thankYouMessage.style.display = "block"; // Show the thank you message
-        thankYouText.textContent = `Thank you, ${emailInput.value}, for subscribing!`; // Personalized message
+        joinButton.style.display = "none";
+        thankYouMessage.style.display = "block";
+        thankYouText.textContent = `Thank you, ${emailInput.value}, for subscribing!`;
     } else {
         alert("Please enter a valid email or username!");
     }
 }
 
-// Function to toggle the navigation menu (if used)
+// Function to toggle the navigation menu
 function toggleMenu() {
     var menu = document.getElementById("dropdown");
     menu.classList.toggle("show");
+}
+
+// Function to toggle the menu
+function toggleMenu() {
+    var menu = document.getElementById("dropdown");
+    menu.classList.toggle("show");
+}
+
+// Function to show product detail popup
+function showProductDetail(title, price, imageUrl) {
+    document.getElementById('popupTitle').innerText = title;
+    document.getElementById('popupPrice').innerText = 'S$ ' + price.toFixed(2);
+    document.getElementById('popupImage').src = imageUrl;
+    document.getElementById('productDetailPopup').style.display = 'block';
+    document.getElementById('overlay').style.display = 'block';
+}
+
+// Function to close product detail popup
+function closePopup() {
+    document.getElementById('productDetailPopup').style.display = 'none';
+    document.getElementById('overlay').style.display = 'none';
+}
+
+// Function to add product to cart
+function addToCart() {
+    var title = document.getElementById('popupTitle').innerText;
+    var price = parseFloat(document.getElementById('popupPrice').innerText.replace('S$ ', ''));
+    var cartItemList = document.getElementById('cartItemList');
+    var totalPriceElement = document.getElementById('totalPrice');
+
+    // Create cart item element
+    var cartItem = document.createElement('div');
+    cartItem.className = 'cart-item';
+    cartItem.innerHTML = `
+        <p>${title}</p>
+        <p>S$ ${price.toFixed(2)}</p>
+    `;
+    cartItemList.appendChild(cartItem);
+
+    // Update total price
+    var totalPrice = parseFloat(totalPriceElement.innerText);
+    totalPrice += price;
+    totalPriceElement.innerText = totalPrice.toFixed(2);
+
+    // Show cart confirmation popup
+    document.getElementById('cartConfirmationPopup').style.display = 'block';
+}
+
+// Function to close cart confirmation popup
+function closeCartPopup() {
+    document.getElementById('cartConfirmationPopup').style.display = 'none';
 }

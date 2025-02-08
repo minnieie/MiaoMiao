@@ -6,6 +6,7 @@
     <title>Create Account</title>
     <link rel="stylesheet" href="style.css">
     <script defer src="script.js"></script>
+    <script type="module" src="firebase.js"></script> <!-- Include the firebase.js script -->
 </head>
 <body>
     <!-- Nav Bar -->
@@ -56,7 +57,7 @@
     </main>
 
     <script>
-        // Function to handle the create account form submission
+        // Form submission handling
         document.getElementById('create-account-form').addEventListener('submit', function(event) {
             event.preventDefault();
 
@@ -71,31 +72,6 @@
             createAccount(email, password, firstName, lastName, streetAddress, postalCode, country);
         });
 
-        // Create Account function (using Firebase or custom backend API)
-        async function createAccount(email, password, firstName, lastName, streetAddress, postalCode, country) {
-            try {
-                // Firebase or backend registration logic here
-                const userCredential = await firebase.auth().createUserWithEmailAndPassword(email, password);
-                console.log("User created:", userCredential.user);
-
-                // Additional user details can be saved to Firebase Firestore or a backend API
-                const user = firebase.auth().currentUser;
-                await user.updateProfile({
-                    displayName: `${firstName} ${lastName}`
-                });
-
-                // Save additional details (address, country, etc.)
-                // Firestore code or API call to save these details would go here
-
-                alert("Account successfully created!");
-                // Redirect user to account page or login page after account creation
-                window.location.href = "account.html";
-            } catch (error) {
-                console.error("Error creating account:", error.message);
-                alert("Account creation failed. Please try again.");
-            }
-        }
-
         // Redirect to login page
         function redirectToLogin() {
             window.location.href = "account.html"; // Modify the link as needed
@@ -109,4 +85,3 @@
     </script>
 </body>
 </html>
-
