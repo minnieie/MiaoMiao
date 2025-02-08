@@ -46,85 +46,69 @@
 
         <div class="product-list_na">
             
-            <div class="product_na">
+            <div class="product_na" onclick="showProductDetail('PINO JELLY Star Project Series Figures', 'S$ 15.90', 'figmaPics/bestSeller1.jpg')">
                 <img src="figmaPics/bestSeller1.jpg" alt="Product Image">
                 <div class="product-details_na">
                     <h3>PINO JELLY Star Project Series Figures</h3>
                     <p class="price_na">S$ 15.90</p>
-                    <button class="view-details" onclick="showProductDetails('PINO JELLY Star Project Series Figures', 'S$ 15.90', 'figmaPics/bestSeller1.jpg')">View Details</button>
+                    <a href="productDetails.html" class="view-details">View Details</a>
                 </div>
             </div>
 
-            <div class="product_na">
+            <div class="product_na" onclick="showProductDetail('Matchless POP MART 14th Anniversary Series Figures', 'S$ 15.90', 'figmaPics/bestSeller2.jpg')">
                 <img src="figmaPics/bestSeller2.jpg" alt="Product Image">
                 <div class="product-details_na">
                     <h3>Matchless POP MART 14th Anniversary Series Figures</h3>
                     <p class="price_na">S$ 15.90</p>
-                    <button class="view-details" onclick="showProductDetails('Matchless POP MART 14th Anniversary Series Figures', 'S$ 15.90', 'figmaPics/bestSeller2.jpg')">View Details</button>
+                    <a href="productDetails.html" class="view-details">View Details</a>
                 </div>
             </div>
 
-            <div class="product_na">
+            <div class="product_na" onclick="showProductDetail('CRYBABY Monster Tear Series', 'S$ 15.90', 'figmaPics/bestSeller3.jpg')">
                 <img src="figmaPics/bestSeller3.jpg" alt="Product Image">
                 <div class="product-details_na">
                     <h3>CRYBABY Monster Tear Series</h3>
                     <p class="price_na">S$ 15.90</p>
-                    <button class="view-details" onclick="showProductDetails('CRYBABY Monster Tear Series', 'S$ 15.90', 'figmaPics/bestSeller3.jpg')">View Details</button>
+                    <a href="productDetails.html" class="view-details">View Details</a>
                 </div>
             </div>
 
-            <div class="product_na">
+            <div class="product_na" onclick="showProductDetail('SKULLPANDA The Sound Series Figures', 'S$ 15.90', 'figmaPics/bestSeller4.jpg')">
                 <img src="figmaPics/bestSeller4.jpg" alt="Product Image">
                 <div class="product-details_na">
                     <h3>SKULLPANDA The Sound Series Figures</h3>
                     <p class="price_na">S$ 15.90</p>
-                    <button class="view-details" onclick="showProductDetails('SKULLPANDA The Sound Series Figures', 'S$ 15.90', 'figmaPics/bestSeller4.jpg')">View Details</button>
+                    <a href="productDetails.html" class="view-details">View Details</a>
                 </div>
             </div>
             
-            <div class="product_na">
+            <div class="product_na" onclick="showProductDetail('Lil Peach Riot: Loading! Series Figures', 'S$ 15.90', 'figmaPics/bestSeller5.jpg')">
                 <img src="figmaPics/bestSeller5.jpg" alt="Product Image">
                 <div class="product-details_na">
                     <h3>Lil Peach Riot: Loading! Series Figures</h3>
                     <p class="price_na">S$ 15.90</p>
-                    <button class="view-details" onclick="showProductDetails('Lil Peach Riot: Loading! Series Figures', 'S$ 15.90', 'figmaPics/bestSeller5.jpg')">View Details</button>
+                    <a href="productDetails.html" class="view-details">View Details</a>
                 </div>
             </div>
 
-            <div class="product_na">
+            <div class="product_na" onclick="showProductDetail('Peach Riot Rise Up Series Figures', 'S$ 18.90', 'figmaPics/bestSeller6.jpg')">
                 <img src="figmaPics/bestSeller6.jpg" alt="Product Image">
                 <div class="product-details_na">
                     <h3>Peach Riot Rise Up Series Figures</h3>
                     <p class="price_na">S$ 18.90</p>
-                    <button class="view-details" onclick="showProductDetails('Peach Riot Rise Up Series Figures', 'S$ 18.90', 'figmaPics/bestSeller6.jpg')">View Details</button>
+                    <a href="productDetails.html" class="view-details">View Details</a>
                 </div>
             </div>
 
         </div>
     </div>
-    
-    <!-- Popup for Product Detail -->
-    <div class="overlay" id="overlay" onclick="closePopup()"></div>
-    <div class="product-detail-popup" id="productDetailPopup">
-        <img id="popupImage" alt="Product Image">
-        <h2 id="popupTitle"></h2>
-        <p class="price" id="popupPrice"></p>
-        <button class="add-to-cart-btn" id="addToCartButton" onclick="addToCart()">Add to Cart</button>
-        <button class="close-popup" onclick="closePopup()">Close</button>
-    </div>
 
-    <!-- Cart Confirmation Popup -->
-    <div id="cartConfirmationPopup" class="cart-confirmation-popup">
-        <div class="cart-header">
-            <h2>YOUR CART</h2>
-            <button class="close-popup" onclick="closeCartPopup()">X</button>
-        </div>
-        <div id="cartItemList" class="cart-item-list"></div>
-        <div class="cart-footer">
-            <p>Total: $<span id="totalPrice">0.00</span></p>
-            <button id="continueShoppingButton" class="continue-shopping-btn">Continue Shopping</button>
-            <button id="goToCartButton" class="go-to-cart-btn">Go to Cart</button>
-        </div>
-    </div>
+    <script>
+        function toggleMenu() {
+            var menu = document.getElementById("dropdown");
+            menu.classList.toggle("show");
+        }
+    </script>
+    <script src="script.js"></script>
 </body>
 </html>

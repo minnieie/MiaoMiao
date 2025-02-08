@@ -186,46 +186,41 @@ window.onload = function () {
     document.getElementById("overlay").style.display = "none";
 };
 
-// Newsletter functionality
-function showThankYouMessage() {
-    var emailInput = document.getElementById('email');
-    var thankYouMessage = document.getElementById('thankYouMessage');
-    var joinButton = document.querySelector('.join-btn');
-    var thankYouText = document.getElementById('thankYouText');
-
-    if (emailInput.value !== "") {
-        joinButton.style.display = "none";
-        thankYouMessage.style.display = "block";
-        thankYouText.textContent = `Thank you, ${emailInput.value}, for subscribing!`;
-    } else {
-        alert("Please enter a valid email or username!");
-    }
-}
-
-// Function to toggle the navigation menu
-function toggleMenu() {
-    var menu = document.getElementById("dropdown");
-    menu.classList.toggle("show");
-}
-
-// Function to toggle the menu
-function toggleMenu() {
-    var menu = document.getElementById("dropdown");
-    menu.classList.toggle("show");
-}
-
-// Function to show product detail popup
+//for productDetail page
 function showProductDetail(title, price, imageUrl) {
-    document.getElementById('popupTitle').innerText = title;
-    document.getElementById('popupPrice').innerText = 'S$ ' + price.toFixed(2);
-    document.getElementById('popupImage').src = imageUrl;
-    document.getElementById('productDetailPopup').style.display = 'block';
-    document.getElementById('overlay').style.display = 'block';
+    localStorage.setItem('productTitle', title);
+    localStorage.setItem('productPrice', price);
+    localStorage.setItem('productImageUrl', imageUrl);
+    window.location.href = 'productDetail.html';
 }
 
-// Function to close product detail popup
-function closePopup() {
-    document.getElementById('productDetailPopup').style.display = 'none';
-    document.getElementById('overlay').style.display = 'none';
-}
+document.addEventListener('DOMContentLoaded', () => {
+    const title = localStorage.getItem('productTitle');
+    const price = localStorage.getItem('productPrice');
+    const imageUrl = localStorage.getItem('productImageUrl');
 
+    if (title && price && imageUrl) {
+        document.getElementById('productTitle').textContent = title;
+        document.getElementById('productPrice').textContent = price;
+        document.getElementById('productImage').src = imageUrl;
+    }
+});
+
+//Adding to bag in bag.html
+document.getElementById('addToBagButton').addEventListener('click', () => {
+    const productTitle = document.getElementById('productTitle').textContent;
+    const productPrice = document.getElementById('productPrice').textContent;
+    const productImageUrl = document.getElementById('productImage').src;
+
+    const product = {
+        title: productTitle,
+        price: productPrice,
+        imageUrl: productImageUrl
+    };
+
+    let bag = JSON.parse(localStorage.getItem('bag')) || [];
+    bag.push(product);
+    localStorage.setItem('bag', JSON.stringify(bag));
+
+    alert('Product added to bag!');
+});

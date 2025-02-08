@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us</title>
     <link rel="stylesheet" href="style.css">
-    <script defer src="script.js"></script> 
+    <script src="script.js"></script> 
+    <script type="module" src="login.js" defer></script>
 </head>
 <body>
     <!-- Nav Bar -->
@@ -64,8 +65,8 @@
                     <img src="figmaPics/bag6.png" alt="">
                 </div>
             </div>
+            <button id="signout" type="button">Sign Out</button>
         </section>
-
         <aside class="newsletter-signup">
             <h2>SIGN UP FOR JOY DELIVERED TO YOUR INBOX</h2>
             <p>Sign up for our email newsletter to be in the know about new arrivals, special offers, and exclusive events. When you sign up you'll receive 10% off your first purchase! When you become a MeowMeow's Insider you'll be able to create a baby.</p>
@@ -77,55 +78,13 @@
                 <a href="#"><i class="fab fa-twitter"></i></a>
             </div>
         </aside>
-
-        <!-- Account Login Modal -->
-        <div id="login-modal" class="modal hidden">
-            <div class="modal-content">
-                <span class="close-button" onclick="toggleModal()">&times;</span>
-                <h2>Account Login</h2>
-                for="username">Email or Username:</label>
-                    <input type="text" id="username" placeholder="Enter your username">
-                    <label for="password">Password:</label>
-                    <input type="password" id="password" placeholder="Password">
-                    <button type="submit">Log In</button>
-                </form>
-                <h2>NEW TO MIAOMIAO?</h2>
-                <p>Creating an account is quick and easy! Save your favorite items, track your orders, and enjoy faster checkout.</p>
-                <button onclick="createAccount()">Create Account</button>
-            </div>
-        </div>
-    </main>
-
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
     <script>
         function toggleMenu() {
-            var menu = document.getElementById("nav-menu");
+            var menu = document.getElementById("dropdown");
             menu.classList.toggle("show");
         }
-
-        function toggleModal() {
-            var modal = document.getElementById("login-modal");
-            modal.classList.toggle("hidden");
-        }
-
-        document.getElementById('account-icon').addEventListener('click', function(event) {
-            event.preventDefault();
-            toggleModal();
-        });
-
-        document.getElementById('login-form').addEventListener('submit', function(event) {
-            event.preventDefault();
-            // Add your login logic here
-            toggleModal();
-            // Show the account page after login
-            document.querySelector('.account-section').classList.remove('hidden');
-        });
-
-        function createAccount() {
-            // Add your create account logic here
-            toggleModal();
-            // Show the account page after account creation
-            document.querySelector('.account-section').classList.remove('hidden');
-        }
-    </script>
+        </script>
 </body>
 </html>

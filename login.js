@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.3.0/firebase-analytics.js";
-import { getAuth, signInWithEmailAndPassword} from "https://www.gstatic.com/firebasejs/11.3.0/firebase-auth.js";
+import { getAuth, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/11.3.0/firebase-auth.js";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -38,9 +38,36 @@ async function createAccount(email, password) {
 
 // Add event listener to the submit button
 const submit = document.getElementById('submit');
-submit.addEventListener("click", function(event){
-  event.preventDefault();
-  const email = document.getElementById('email').value;
-  const password = document.getElementById('password').value;
-  createAccount(email, password);
-});
+if (submit) {
+  submit.addEventListener("click", function(event){
+    event.preventDefault();
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    createAccount(email, password);
+  });
+} else {
+  console.error('Submit button not found');
+}
+
+// Logout function
+const Logout = document.getElementById('signout');
+if (Logout) {
+  Logout.addEventListener("click", function(event){
+    event.preventDefault();
+    console.log('Sign out button clicked'); // Debug log
+    if (auth.currentUser) {
+      signOut(auth).then(() => {
+        alert('MiaoMiao has signed out');
+        window.location.href = 'index.html'; // Redirect to homepage or login page
+      }).catch((error) => {
+        console.error('Sign out error', error);
+        alert('Error signing out. Please try again.');
+      });
+    } else {
+      console.log('No user is currently signed in');
+      alert('No user is currently signed in');
+    }
+  });
+} else {
+  console.error('Sign out button not found');
+}
