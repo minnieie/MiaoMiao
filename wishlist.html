@@ -1,39 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vertical Navigation Menu</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <script src="script.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Wishlist - MiaoMiao Store</title>
+  <link href="https://fonts.googleapis.com/css2?family=Kaisei+Tokumin:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <script src="script.js"></script> 
+  <script type="module" src="login.js" defer></script>
 </head>
 <body>
-    <!-- Nav Bar -->
-    <nav class="navbar">
-        <!-- Hamburger Button -->
-        <div class="nav-menu-icon" onclick="toggleMenu()">
-            <img src="figmaPics/hamburger.png" alt="Menu">
-        </div>
+<!-- Nav Bar -->
+<nav class="navbar">
+  <div class="nav-menu-icon" onclick="toggleMenu()">
+    <img src="figmaPics/hamburger.png" alt="Menu">
+  </div>
+  <div class="nav-logo">
+    <a href="index.html"><img src="figmaPics/logo.png" alt="Logo"></a>
+  </div>
+  <div class="nav-3icons">
+    <a href="createacc.html"><img src="figmaPics/account.png" alt="Account"></a>
+    <a href="wishlist.html"><img src="figmaPics/heart.png" alt="Wishlist"></a>
+    <a href="bag.html"><img src="figmaPics/cart.png" alt="Bag"></a>
+  </div>
+</nav>
+<div class="nav-dropdown-menu" id="dropdown">
+  <a href="index.html">Homepage</a>
+  <a href="catalog.html">Catalog</a>
+  <a href="vouchers.html">Vouchers & Discounts</a>
+  <a href="miaomiaopass.html">Miaomiao Pass</a>
+  <a href="aboutus.html">About Us</a> 
+</div>
 
-        <!-- Logo -->
-        <div class="nav-logo">
-            <a href="index.html"><img src="figmaPics/logo.png" alt="Logo"></a>
-        </div>
+<main class="cart-container">
+  <h3>Home / Your Wishlist</h3>
+  <h2>Your Wishlist (<span id="wishlistItemCount">0</span> items)</h2>
+  <hr>
+  <div id="wishlistItemsContainer" class="wishlist-items-container">
+    <p class="empty-wishlist-message">Your wishlist is empty</p>
+  </div>
+  <hr>
 
-        <!-- Right Icons -->
-        <div class="nav-3icons">
-            <a href="account.html"><img src="figmaPics/account.png" alt="Account"></a>
-            <a href="wishlist.html"><img src="figmaPics/heart.png" alt="Wishlist"></a>
-            <a href="bag.html"><img src="figmaPics/cart.png" alt="Bag"></a>
-        </div>
-    </nav>
-
-    <!-- Dropdown Menu -->
-    <div class="nav-dropdown-menu" id="dropdown">
-        <a href="index.html">Homepage</a>
-        <a href="catalog.html">Catalog</a>
-        <a href="vouchers.html">Vouchers & Discounts</a>
-        <a href="miaomiaopass.html">Miaomiao Pass</a>
-        <a href="aboutus.html">About Us</a> 
+  <!-- New Arrivals Section -->
+<a href="newArrivals.html">
+    <h2>You Might Like</h2>
+</a>
+<div class="might-like-container">
+    <div class="might-like-item">
+      <img src="figmaPics/newArrival1.jpg" alt="Product 1">
+      <h3>Product 1</h3>
+      <p>$20.00</p>
     </div>
+    <div class="might-like-item">
+      <img src="figmaPics/newArrival2.jpg" alt="Product 2">
+      <h3>Product 2</h3>
+      <p>$25.00</p>
+    </div>
+    <div class="might-like-item">
+      <img src="figmaPics/newArrival3.jpg" alt="Product 3">
+      <h3>Product 3</h3>
+      <p>$30.00</p>
+    </div>
+    <div class="might-like-item">
+      <img src="figmaPics/newArrival4.jpg" alt="Product 4">
+      <h3>Product 4</h3>
+      <p>$35.00</p>
+    </div>
+    <div class="might-like-item">
+      <img src="figmaPics/newArrival5.jpg" alt="Product 5">
+      <h3>Product 5</h3>
+      <p>$40.00</p>
+    </div>
+    <div class="might-like-item">
+      <img src="figmaPics/newArrival6.jpg" alt="Product 6">
+      <h3>Product 6</h3>
+      <p>$45.00</p>
+    </div>
+</div>
+
+  <a href="catalog.html"><button class="continue-shopping-button">Continue Shopping</button></a>
+</main>
+
+<!-- Footer -->
+<aside class="newsletter-signup">
+  <h2>SIGN UP FOR JOY DELIVERED TO YOUR INBOX</h2>
+  <p>Sign up for our email newsletter to be in the know about new arrivals, special offers, and exclusive events. When you sign up you'll receive 10% off your first purchase!</p>
+  <a href="subscribe.html"><button>JOIN NOW</button></a>
+  <div class="social-links">
+    <a href="#"><img src="figmaPics/facebook.png" alt="Facebook"></a>
+    <a href="#"><img src="figmaPics/Instagram.png" alt="Instagram"></a>
+    <a href="#"><img src="figmaPics/x.png" alt="Twitter"></a>
+  </div>
+</aside>
+
+<script>
+    function toggleMenu() {
+        var menu = document.getElementById("dropdown");
+        menu.classList.toggle("show");
+    }
+
+    // Load wishlist items from localStorage and display them
+    function loadWishlistItems() {
+        const wishlistContents = document.getElementById('wishlistItemsContainer');
+        const wishlistItemCount = document.getElementById('wishlistItemCount');
+        let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+        wishlistContents.innerHTML = '';
+
+        if (wishlist.length === 0) {
+            wishlistContents.innerHTML = '<p class="empty-wishlist-message">Your wishlist is empty</p>';
+        } else {
+            wishlist.forEach((product, index) => {
+                let price = parseFloat(product.price);
+                if (isNaN(price) || price <= 0) {
+                    price = 0;
+                }
+
+                const productDiv = document.createElement('div');
+                productDiv.className = 'wishlist-item';
+                productDiv.innerHTML = `
+                    <img src="${product.imageUrl}" alt="${product.title}" />
+                    <div class="wishlist-item-info">
+                        <h3>${product.title}</h3>
+                        <p>$${price.toFixed(2)}</p>
+                        <button onclick="removeItem(${index})" class="remove-item">Remove</button>
+                    </div>
+                `;
+                wishlistContents.appendChild(productDiv);
+            });
+        }
+
+        wishlistItemCount.textContent = wishlist.length;
+    }
+
+    // Remove item from the wishlist
+    function removeItem(index) {
+        let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+        wishlist.splice(index, 1);
+        localStorage.setItem('wishlist', JSON.stringify(wishlist));
+        loadWishlistItems();
+    }
+
+    window.onload = loadWishlistItems;
+</script>
+
+</body>
+</html>

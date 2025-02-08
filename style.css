@@ -2012,7 +2012,82 @@ button:active {
     background-color: #004085;
 }
 
+/* Add to your CSS file */
+#wishlistItemsContainer {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 items per row */
+    gap: 20px; /* Space between items */
+    padding: 20px;
+  }
+  
+  .wishlist-item {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .wishlist-item img {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    border-radius: 5px;
+  }
+  
+  .wishlist-item-info h3 {
+    font-size: 16px;
+    margin: 10px 0;
+  }
+  
+  .wishlist-item-info p {
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .remove-item {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .remove-item:hover {
+    background-color: #c0392b;
+  }
 
+  /* You Might Like section */
+  .might-like-container {
+    display: flex;
+    overflow-x: auto; /* Enable horizontal scrolling */
+    gap: 20px; /* Space between items */
+    padding: 20px 0;
+  }
+  
+  .might-like-item {
+    flex: 0 0 auto; /* Prevent items from stretching */
+    width: 200px; /* Adjust the width of each item */
+    text-align: center;
+  }
+  
+  .might-like-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px; /* Optional: to give items rounded corners */
+  }
+  
+  .might-like-item h3 {
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .might-like-item p {
+    color: #666;
+    font-size: 14px;
+  }
+  
 /* 
 @media (max-width: 768px) {
     .tiers-section {

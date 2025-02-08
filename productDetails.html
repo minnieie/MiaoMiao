@@ -35,7 +35,7 @@
     <h2 id="productTitle"></h2>
     <p class="price" id="productPrice"></p>
     <button id="addToBagButton" class="add-to-bag">Add To Bag</button>
-    <button class="add-to-wishlist">Add To Wishlist</button>
+    <button id="addToWishlistButton" class="add-to-wishlist">Add To Wishlist</button>
     <button class="back-btn" onclick="window.history.back()">Back</button>
   </div>
   
@@ -122,6 +122,25 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     localStorage.setItem('cart', JSON.stringify(cart));
     alert(`${title} has been added to your bag!`);
+  });
+
+  // Add to Wishlist functionality
+  const addToWishlistButton = document.getElementById('addToWishlistButton');
+  addToWishlistButton.addEventListener('click', () => {
+    let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+    const product = {
+      title: title,
+      price: parseFloat(price), // Ensure the price is a valid number
+      imageUrl: imageUrl,
+    };
+    const existingProductIndex = wishlist.findIndex(item => item.title === title);
+    if (existingProductIndex === -1) {
+      wishlist.push(product);
+      localStorage.setItem('wishlist', JSON.stringify(wishlist));
+      alert(`${title} has been added to your wishlist!`);
+    } else {
+      alert(`${title} is already in your wishlist.`);
+    }
   });
 });
 
