@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Miao Miao Pass</title>
+    <script defer src="script.js"></script>
+</head>
+<body>
+    <!-- Nav Bar -->
+    <nav class="navbar">
+        <!-- Hamburger Button -->
+        <div class="nav-menu-icon" onclick="toggleMenu()">
+            <img src="figmaPics/hamburger.png" alt="Menu">
+        </div>
+
+        <!-- Logo -->
+        <div class="nav-logo">
+            <a href="index.html"><img src="figmaPics/logo.png" alt="Logo"></a>
+        </div>
+
+        <!-- Right Icons -->
+        <div class="nav-3icons">
+            <a href="createacc.html"><img src="figmaPics/account.png" alt="Account"></a>
+            <a href="wishlist.html"><img src="figmaPics/heart.png" alt="Wishlist"></a>
+            <a href="bag.html"><img src="figmaPics/cart.png" alt="Bag"></a>
+        </div>
+    </nav>
+
+    <!-- Dropdown Menu -->
+    <div class="nav-dropdown-menu" id="dropdown">
+        <a href="index.html">Homepage</a>
+        <a href="catalog.html">Catalog</a>
+        <a href="vouchers.html">Vouchers & Discounts</a>
+        <a href="miaomiaopass.html">Miaomiao Pass</a>
+        <a href="aboutus.html">About Us</a> 
+    </div>
+
+    <div class="tiers-container">
+        <h2>Accumulate Points</h2>
+        <div class="points-section">
+            <div class="point-item">
+                <span class="icon">💳</span>
+                <div>
+                    <strong>Shop with MiaoMiao</strong>
+                    <p>1 Point for every $1 spent</p>
+                </div>
+            </div>
+            <div class="point-item">
+                <span class="icon">🟢</span>
+                <div>
+                    <strong>Register your account</strong>
+                    <p>+50 points</p>
+                </div>
+            </div>
+            <div class="point-item">
+                <span class="icon">🔵</span>
+                <div>
+                    <strong>Write a product review</strong>
+                    <p>+5 points</p>
+                </div>
+            </div>
+        </div>
+        
+        <h2>MIAOMIAO TIERS</h2>
+        <div class="tiers-section">
+            <div class="benefits">
+                <p>Streak Discounts</p>
+                <p>Figurine Pass Sales</p>
+                <p>Welcome gift</p>
+                <p>Birthday gift</p>
+                <p>Exclusive events</p>
+                <p>Free Shipping</p>
+            </div>
+            <div class="tiers-table">
+                <div class="tier"><span class="tier-name white">White Tier</span><p>0 pts</p></div>
+                <br><div class="tier"><span class="tier-name black">Black Tier</span><p>300 pts</p></div>
+                <div class="tier"><span class="tier-name gold">Gold Tier</span><p>1000 pts</p></div>
+            </div>
+        </div>
+        <p class="current-points">Current points: 290 pts</p>
+        <p class="current-tier">Tier: White Tier</p>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            var menu = document.getElementById("dropdown");
+            menu.classList.toggle("show");
+        }
+        </script>
+</body>
+</html>
