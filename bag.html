@@ -1,131 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Bag - MiaoMiao Store</title>
-    <link href="https://fonts.googleapis.com/css2?family=Kaisei+Tokumin:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <script defer src="script.js"></script> 
-    <script type="module" src="login.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Bag - MiaoMiao Store</title>
+  <link href="https://fonts.googleapis.com/css2?family=Kaisei+Tokumin:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <script defer src="script.js"></script> 
+  <script type="module" src="login.js" defer></script>
 </head>
 <body>
-
 <!-- Nav Bar -->
 <nav class="navbar">
-    <div class="nav-menu-icon" onclick="toggleMenu()">
-        <img src="figmaPics/hamburger.png" alt="Menu">
-    </div>
-    <div class="nav-logo">
-        <a href="index.html"><img src="figmaPics/logo.png" alt="Logo"></a>
-    </div>
-    <div class="nav-3icons">
-        <a href="createacc.html"><img src="figmaPics/account.png" alt="Account"></a>
-        <a href="wishlist.html"><img src="figmaPics/heart.png" alt="Wishlist"></a>
-        <a href="bag.html"><img src="figmaPics/cart.png" alt="Bag"></a>
-    </div>
+  <div class="nav-menu-icon" onclick="toggleMenu()">
+    <img src="figmaPics/hamburger.png" alt="Menu">
+  </div>
+  <div class="nav-logo">
+    <a href="index.html"><img src="figmaPics/logo.png" alt="Logo"></a>
+  </div>
+  <div class="nav-3icons">
+    <a href="createacc.html"><img src="figmaPics/account.png" alt="Account"></a>
+    <a href="wishlist.html"><img src="figmaPics/heart.png" alt="Wishlist"></a>
+    <a href="bag.html"><img src="figmaPics/cart.png" alt="Bag"></a>
+  </div>
 </nav>
-
 <div class="nav-dropdown-menu" id="dropdown">
-    <a href="index.html">Homepage</a>
-    <a href="catalog.html">Catalog</a>
-    <a href="vouchers.html">Vouchers & Discounts</a>
-    <a href="miaomiaopass.html">Miaomiao Pass</a>
-    <a href="aboutus.html">About Us</a> 
+  <a href="index.html">Homepage</a>
+  <a href="catalog.html">Catalog</a>
+  <a href="vouchers.html">Vouchers & Discounts</a>
+  <a href="miaomiaopass.html">Miaomiao Pass</a>
+  <a href="aboutus.html">About Us</a> 
 </div>
-
 <main class="cart-container">
-    <h3>Home/Your Bag</h3>
-    <h2>Your Bag (<span id="cartItemCount">0</span> items)</h2>
-    <hr>
-    <div id="cartItemsContainer">
-        <p class="empty-cart-message">Your bag is empty</p>
-    </div>
-    <hr>
-    <div class="total-price">
-        <p>Total: $<span id="totalPrice">0.00</span></p>
-    </div>
+  <h3>Home/Your Bag</h3>
+  <h2>Your Bag (<span id="cartItemCount">0</span> items)</h2>
+  <hr>
+  <div id="cartItemsContainer">
+    <p class="empty-cart-message">Your bag is empty</p>
+  </div>
+  <hr>
+  <div class="total-price">
+    <p>Total: $<span id="totalPrice">0.00</span></p>
+  </div>
+  <a href="checkout.html"><button class="checkout-button">Proceed to Checkout</button></a>
 </main>
-
 <!-- Footer -->
 <aside class="newsletter-signup">
-    <h2>SIGN UP FOR JOY DELIVERED TO YOUR INBOX</h2>
-    <p>Sign up for our email newsletter to be in the know about new arrivals, special offers, and exclusive events. When you sign up you'll receive 10% off your first purchase!</p>
-    <!-- <input type="email" placeholder="Enter your email address here"> -->
-    <a href="subscribe.html"><button>JOIN NOW</button></a>
-    <div class="social-links">
-        <a href="#"><img src="figmaPics/facebook.png" alt="Facebook"></a>
-        <a href="#"><img src="figmaPics/Instagram.png" alt="Instagram"></a>
-        <a href="#"><img src="figmaPics/x.png" alt="Twitter"></a>
-    </div>
+  <h2>SIGN UP FOR JOY DELIVERED TO YOUR INBOX</h2>
+  <p>Sign up for our email newsletter to be in the know about new arrivals, special offers, and exclusive events. When you sign up you'll receive 10% off your first purchase!</p>
+  <a href="subscribe.html"><button>JOIN NOW</button></a>
+  <div class="social-links">
+    <a href="#"><img src="figmaPics/facebook.png" alt="Facebook"></a>
+    <a href="#"><img src="figmaPics/Instagram.png" alt="Instagram"></a>
+    <a href="#"><img src="figmaPics/x.png" alt="Twitter"></a>
+  </div>
 </aside>
-
 <script>
-    function toggleMenu() {
-        var menu = document.getElementById("dropdown");
-        menu.classList.toggle("show");
+  function toggleMenu() {
+    var menu = document.getElementById("dropdown");
+    menu.classList.toggle("show");
+  }
+
+  // Load bag items from localStorage and display them
+  function loadBagItems() {
+    const bagContents = document.getElementById('cartItemsContainer');
+    const cartItemCount = document.getElementById('cartItemCount');
+    const totalPrice = document.getElementById('totalPrice');
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    bagContents.innerHTML = '';
+    if (cart.length === 0) {
+      bagContents.innerHTML = '<p class="empty-cart-message">Your bag is empty</p>';
+      totalPrice.textContent = '0.00';
+    } else {
+      let total = 0;
+      cart.forEach((product, index) => {
+        const productDiv = document.createElement('div');
+        productDiv.className = 'cart-item';
+        productDiv.innerHTML = `
+          <img src="${product.imageUrl}" alt="${product.title}" />
+          <div class="cart-item-info">
+            <h3>${product.title}</h3>
+            <p>${product.price}</p>
+            <div class="quantity-controls">
+              <button onclick="updateQuantity(${index}, -1)">-</button>
+              <span>Quantity: ${product.quantity}</span>
+              <button onclick="updateQuantity(${index}, 1)">+</button>
+            </div>
+            <button onclick="removeItem(${index})" class="remove-item">Remove</button>
+          </div>
+        `;
+        bagContents.appendChild(productDiv);
+        total += parseFloat(product.price) * product.quantity;
+      });
+      totalPrice.textContent = total.toFixed(2);
     }
+    cartItemCount.textContent = cart.reduce((total, item) => total + item.quantity, 0);
+  }
 
-    // Load bag items from localStorage and display them
-    function loadBagItems() {
-        const bagContents = document.getElementById('cartItemsContainer');
-        const cartItemCount = document.getElementById('cartItemCount');
-        const totalPrice = document.getElementById('totalPrice');
-        let cart = JSON.parse(localStorage.getItem('cart')) || [];
-        bagContents.innerHTML = '';
-
-        if (cart.length === 0) {
-            bagContents.innerHTML = '<p class="empty-cart-message">Your bag is empty</p>';
-            totalPrice.textContent = '0.00';
-        } else {
-            let total = 0;
-            cart.forEach((product, index) => {
-                const productDiv = document.createElement('div');
-                productDiv.className = 'cart-item';
-                productDiv.innerHTML = `
-                    <img src="${product.imageUrl}" alt="${product.title}" />
-                    <div class="cart-item-info">
-                        <h3>${product.title}</h3>
-                        <p>${product.price}</p>
-                        <div class="quantity-controls">
-                            <button onclick="updateQuantity(${index}, -1)">-</button>
-                            <span>Quantity: ${product.quantity}</span>
-                            <button onclick="updateQuantity(${index}, 1)">+</button>
-                        </div>
-                        <button onclick="removeItem(${index})" class="remove-item">Remove</button>
-                    </div>
-                `;
-                bagContents.appendChild(productDiv);
-                total += product.price * product.quantity;
-            });
-            totalPrice.textContent = total.toFixed(2);
-        }
-
-        cartItemCount.textContent = cart.reduce((total, item) => total + item.quantity, 0);
+  // Update item quantity in the cart
+  function updateQuantity(index, change) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    if (cart[index]) {
+      cart[index].quantity += change;
+      if (cart[index].quantity <= 0) cart[index].quantity = 1; // Prevent quantity from going below 1
+      localStorage.setItem('cart', JSON.stringify(cart));
+      loadBagItems(); // Reload the cart
     }
+  }
 
-    // Update item quantity in the cart
-    function updateQuantity(index, change) {
-        let cart = JSON.parse(localStorage.getItem('cart')) || [];
-        if (cart[index]) {
-            cart[index].quantity += change;
-            if (cart[index].quantity <= 0) cart[index].quantity = 1; // Prevent quantity from going below 1
-            localStorage.setItem('cart', JSON.stringify(cart));
-            loadBagItems(); // Reload the cart
-        }
-    }
+  // Remove item from the cart
+  function removeItem(index) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cart.splice(index, 1); // Remove the item at the specified index
+    localStorage.setItem('cart', JSON.stringify(cart));
+    loadBagItems(); // Reload the cart
+  }
 
-    // Remove item from the cart
-    function removeItem(index) {
-        let cart = JSON.parse(localStorage.getItem('cart')) || [];
-        cart.splice(index, 1); // Remove the item at the specified index
-        localStorage.setItem('cart', JSON.stringify(cart));
-        loadBagItems(); // Reload the cart
-    }
-
-    // Load bag items on page load
-    window.onload = loadBagItems;
+  // Load bag items on page load
+  window.onload = loadBagItems;
 </script>
 </body>
 </html>
