@@ -185,3 +185,23 @@ window.onload = function () {
     document.getElementById("productDetailPopup").style.display = "none";
     document.getElementById("overlay").style.display = "none";
 };
+
+//for productDetail page
+function showProductDetail(title, price, imageUrl) {
+    localStorage.setItem('productTitle', title);
+    localStorage.setItem('productPrice', price);
+    localStorage.setItem('productImageUrl', imageUrl);
+    window.location.href = 'productDetail.html';
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const title = localStorage.getItem('productTitle');
+    const price = localStorage.getItem('productPrice');
+    const imageUrl = localStorage.getItem('productImageUrl');
+
+    if (title && price && imageUrl) {
+        document.getElementById('productTitle').textContent = title;
+        document.getElementById('productPrice').textContent = price;
+        document.getElementById('productImage').src = imageUrl;
+    }
+});

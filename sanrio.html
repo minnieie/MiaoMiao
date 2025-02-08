@@ -6,6 +6,7 @@
     <title>Vertical Navigation Menu</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script defer src="script.js"></script>
 </head>
 <body>
     <!-- Nav Bar -->
@@ -45,7 +46,7 @@
 
         <div class="product-list_na">
             
-            <div class="product_na">
+            <div class="product_na" onclick="showProductDetail('Sanrio characters 50th Anniversary Series Figures', 'S$ 15.90', 'figmaPics/sanrio1.jpg')">
                 <img src="figmaPics/sanrio1.jpg" alt="Product Image">
                 <div class="product-details_na">
                     <h3>Sanrio characters 50th Anniversary Series Figures</h3>
@@ -54,8 +55,8 @@
                 </div>
             </div>
 
-            <div class="product_na">
-                <img src="figmaPics/sanrio2.jpg" alt="Product Image">
+            <div class="product_na" onclick="showProductDetail('Hello Kitty Food Town Series Scene Set', 'S$ 15.90', 'figmaPics/hello kitty.png')">
+                <img src="figmaPics/hello kitty.png" alt="Product Image">
                 <div class="product-details_na">
                     <h3>Hello Kitty Food Town Series Scene Set</h3>
                     <p class="price_na">S$ 15.90</p>
@@ -63,8 +64,8 @@
                 </div>
             </div>
 
-            <div class="product_na">
-                <img src="figmaPics/sanrio3.jpg" alt="Product Image">
+            <div class="product_na" onclick="showProductDetail('Sanrio characters Sweet Best Series', 'S$ 13.90', 'figmaPics/kuromi.jpg')">
+                <img src="figmaPics/kuromi.jpg" alt="Product Image">
                 <div class="product-details_na">
                     <h3>Sanrio characters Sweet Best Series</h3>
                     <p class="price_na">S$ 13.90</p>
@@ -72,7 +73,7 @@
                 </div>
             </div>
 
-            <div class="product_na">
+            <div class="product_na" onclick="showProductDetail('Hello Kitty 50th Anniversity Figurine', 'S$ 129.90', 'figmaPics/sanrio4.jpg')">
                 <img src="figmaPics/sanrio4.jpg" alt="Product Image">
                 <div class="product-details_na">
                     <h3>Hello Kitty 50th Anniversity Figurine</h3>
@@ -81,7 +82,7 @@
                 </div>
             </div>
             
-            <div class="product_na">
+            <div class="product_na" onclick="showProductDetail('MEGA SPACE MOLLY 400% Sanrio Characters Series', 'S$ 279.90', 'figmaPics/sanrio5.jpg')">
                 <img src="figmaPics/sanrio5.jpg" alt="Product Image">
                 <div class="product-details_na">
                     <h3>MEGA SPACE MOLLY 400% Sanrio Characters Series</h3>
@@ -90,7 +91,7 @@
                 </div>
             </div>
 
-            <div class="product_na">
+            <div class="product_na" onclick="showProductDetail('Sanrio Characters Fall Asleep series', 'S$ 13.90', 'figmaPics/bestSeller6.jpg')">
                 <img src="figmaPics/bestSeller6.jpg" alt="Product Image">
                 <div class="product-details_na">
                     <h3>Sanrio Characters Fall Asleep series</h3>
@@ -101,29 +102,6 @@
 
         </div>
     </div>
-        <!-- Popup for Product Detail -->
-    <div class="overlay" id="overlay"></div>
-    <div class="product-detail-popup" id="productDetailPopup">
-        <img id="popupImage" alt="Product Image">
-        <h2 id="popupTitle"></h2>
-        <p class="price" id="popupPrice"></p>
-        <button class="add-to-cart-btn" id="addToCartButton">Add to Cart</button>
-        <button class="close-popup">Close</button>
-    </div>
-
-    <!-- Cart Confirmation Popup -->
-    <div id="cartConfirmationPopup" class="cart-confirmation-popup">
-        <div class="cart-header">
-            <h2>YOUR CART</h2>
-            <button class="close-popup">X</button>
-        </div>
-        <div id="cartItemList" class="cart-item-list"></div>
-        <div class="cart-footer">
-            <p>Total: $<span id="totalPrice">0.00</span></p>
-            <button id="continueShoppingButton" class="continue-shopping-btn">Continue Shopping</button>
-            <button id="goToCartButton" class="go-to-cart-btn">Go to Cart</button>
-        </div>
-    </div>
-
+    <script src="script.js"></script>
 </body>
 </html>

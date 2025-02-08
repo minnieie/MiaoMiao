@@ -39,9 +39,9 @@
 
     <section class="product-details">
         <div class="product-container">
-            <img src="figmaPics/newArrival1.jpg" alt="Hirono Ceramic Feather Figurine" class="product-image">
-            <h2>Hirono Ceramic Feather Figurine</h2>
-            <p class="price">S$ 59.90</p>
+            <img id="productImage" alt="Product Image" class="product-image">
+            <h2 id="productTitle"></h2>
+            <p class="price" id="productPrice"></p>
             <button class="add-to-bag">Add To Bag</button>
             <button class="add-to-wishlist">Add To Wishlist</button>
             <button class="back-btn">Back</button>
@@ -86,7 +86,19 @@
             </div>
         </div>
     </section>
-    
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const title = localStorage.getItem('productTitle');
+            const price = localStorage.getItem('productPrice');
+            const imageUrl = localStorage.getItem('productImageUrl');
+
+            if (title && price && imageUrl) {
+                document.getElementById('productTitle').textContent = title;
+                document.getElementById('productPrice').textContent = price;
+                document.getElementById('productImage').src = imageUrl;
+            }
+        });
+    </script>
 </body>
 </html>

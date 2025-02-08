@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html lang="en"><!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -12,7 +13,7 @@
     <!-- Nav Bar -->
     <nav class="navbar">
         <!-- Hamburger Button -->
-        <div class="nav-menu-icon" onclick="toggleMenu()">
+        <div class="nav-menu-icon">
             <img src="figmaPics/hamburger.png" alt="Menu">
         </div>
 
@@ -23,7 +24,7 @@
 
         <!-- Right Icons -->
         <div class="nav-3icons">
-           maPics/account.png" alt="Account"></a>
+            <a href="account.html"><img src="figmaPics/account.png" alt="Account"></a>
             <a href="wishlist.html"><img src="figmaPics/heart.png" alt="Wishlist"></a>
             <a href="bag.html"><img src="figmaPics/cart.png" alt="Bag"></a>
         </div>
@@ -46,7 +47,7 @@
         </div><br><br>
 
         <div class="product-list_na">
-            <div class="product_na" onclick="showProductDetail('Hirono Ceramic Feather Figurine', 59.90, 'figmaPics/newArrival1.jpg')">
+            <div class="product_na" onclick="showProductDetail('Hirono Ceramic Feather Figurine', 'S$ 59.90', 'figmaPics/newArrival1.jpg')">
                 <img src="figmaPics/newArrival1.jpg" alt="Product Image">
                 <div class="product-details_na">
                     <h3>Hirono Ceramic Feather Figurine</h3>
@@ -55,16 +56,16 @@
                 </div>
             </div>
 
-            <div class="product_na" onclick="showProductDetail('ZANMANG LOOPY\'s Moments Series Figures', 15.90, 'figmaPics/newArrival2.jpg')">
-                <img src="figmaPics/newArrival2.jpg" alt="Product Image">
+            <div class="product_na" onclick="showProductDetail('Skull Panda Warmth Series Taste From the Memory', 'S$ 15.90', 'figmaPics/skull panda.png')">
+                <img src="figmaPics/skull panda.png" alt="Product Image">
                 <div class="product-details_na">
-                    <h3>ZANMANG LOOPY's Moments Series Figures</h3>
+                    <h3>Skull Panda Warmth Series Taste From the Memory</h3>
                     <p class="price_na">S$ 15.90</p>
                     <a href="productDetails.html" class="view-details">View Details</a>
                 </div>
             </div>
 
-            <div class="product_na" onclick="showProductDetail('MOLLY Hugging 1/8 Action Figure', 59.90, 'figmaPics/newArrival3.jpg')">
+            <div class="product_na" onclick="showProductDetail('MOLLY Hugging 1/8 Action Figure', 'S$ 59.90', 'figmaPics/newArrival3.jpg')">
                 <img src="figmaPics/newArrival3.jpg" alt="Product Image">
                 <div class="product-details_na">
                     <h3>MOLLY Hugging 1/8 Action Figure</h3>
@@ -73,7 +74,7 @@
                 </div>
             </div>
 
-            <div class="product_na" onclick="showProductDetail('Baby Molly Future Painter Figurine', 15.90, 'figmaPics/newArrival4.jpg')">
+            <div class="product_na" onclick="showProductDetail('Baby Molly Future Painter Figurine', 'S$ 15.90', 'figmaPics/newArrival4.jpg')">
                 <img src="figmaPics/newArrival4.jpg" alt="Product Image">
                 <div class="product-details_na">
                     <h3>Baby Molly Future Painter Figurine</h3>
@@ -82,7 +83,7 @@
                 </div>
             </div>
             
-            <div class="product_na" onclick="showProductDetail('CRYBABY MAKE ME FLOAT FIGURE', 18.90, 'figmaPics/newArrival5.jpg')">
+            <div class="product_na" onclick="showProductDetail('CRYBABY MAKE ME FLOAT FIGURE', 'S$ 18.90', 'figmaPics/newArrival5.jpg')">
                 <img src="figmaPics/newArrival5.jpg" alt="Product Image">
                 <div class="product-details_na">
                     <h3>CRYBABY MAKE ME FLOAT FIGURE</h3>
@@ -91,7 +92,7 @@
                 </div>
             </div>
 
-            <div class="product_na" onclick="showProductDetail('CRYBABY Crying For Love Series', 39.90, 'figmaPics/newArrival6.jpg')">
+            <div class="product_na" onclick="showProductDetail('CRYBABY Crying For Love Series', 'S$ 39.90', 'figmaPics/newArrival6.jpg')">
                 <img src="figmaPics/newArrival6.jpg" alt="Product Image">
                 <div class="product-details_na">
                     <h3>CRYBABY Crying For Love Series</h3>
@@ -102,28 +103,6 @@
         </div>
     </div>
 
-    <!-- Popup for Product Detail -->
-    <div class="overlay" id="overlay" onclick="closePopup()"></div>
-    <div class="product-detail-popup" id="productDetailPopup">
-        <img id="popupImage" alt="Product Image">
-        <h2 id="popupTitle"></h2>
-        <p class="price" id="popupPrice"></p>
-        <button class="add-to-cart-btn" id="addToCartButton" onclick="addToCart()">Add to Cart</button>
-        <button class="close-popup" onclick="closePopup()">Close</button>
-    </div>
-
-    <!-- Cart Confirmation Popup -->
-    <div id="cartConfirmationPopup" class="cart-confirmation-popup">
-        <div class="cart-header">
-            <h2>YOUR CART</h2>
-            <button class="close-popup" onclick="closeCartPopup()">X</button>
-        </div>
-        <div id="cartItemList" class="cart-item-list"></div>
-        <div class="cart-footer">
-            <p>Total: $<span id="totalPrice">0.00</span></p>
-            <button id="continueShoppingButton" class="continue-shopping-btn">Continue Shopping</button>
-            <button id="goToCartButton" class="go-to-cart-btn">Go to Cart</button>
-        </div>
-    </div>
+    <script src="script.js"></script>
 </body>
 </html>
