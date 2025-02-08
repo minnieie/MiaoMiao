@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
+    <script type="module" src="login.js" defer></script> <!-- Include the firebase.js script -->
+</head>
+<body>
+    <!-- Nav Bar -->
+    <nav class="navbar">
+        <div class="nav-menu-icon" onclick="toggleMenu()">
+            <img src="figmaPics/hamburger.png" alt="Menu">
+        </div>
+        <div class="nav-logo">
+            <a href="index.html"><img src="figmaPics/logo.png" alt="Logo"></a>
+        </div>
+        <div class="nav-3icons">
+            <a href="account.html" id="account-icon"><img src="figmaPics/account.png" alt="Account"></a>
+            <a href="wishlist.html"><img src="figmaPics/heart.png" alt="Wishlist"></a>
+            <a href="bag.html"><img src="figmaPics/cart.png" alt="Bag"></a>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Create Account Section -->
+        <section id="create-account-section" class="create-account-section">
+            <h2>Sign In</h2>
+            <form id="create-account-form">
+                <label for="email">Email:</label>
+                <input type="text" id="email" placeholder="Enter your email" required>
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" placeholder="Enter your password" required>
+
+                <button id="submit" type="submit">Create Account</button>
+            </form>
+            <p>Don't have an account? <a href="createacc.html" onclick="redirectToLogin()">Sign Up</a></p>
+        </section>
+    </main>
+
+    <script>
+        // Form submission handling
+        document.getElementById('create-account-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            createAccount(email, password);
+        });
+
+        // Redirect to login page
+        function redirectToLogin() {
+            window.location.href = "account.html"; // Modify the link as needed
+        }
+
+        // Function to toggle the menu
+        function toggleMenu() {
+            var menu = document.getElementById("nav-menu");
+            menu.classList.toggle("show");
+        }
+    </script>
+</body>
+</html>

@@ -229,32 +229,3 @@ function closePopup() {
     document.getElementById('overlay').style.display = 'none';
 }
 
-// Function to add product to cart
-function addToCart() {
-    var title = document.getElementById('popupTitle').innerText;
-    var price = parseFloat(document.getElementById('popupPrice').innerText.replace('S$ ', ''));
-    var cartItemList = document.getElementById('cartItemList');
-    var totalPriceElement = document.getElementById('totalPrice');
-
-    // Create cart item element
-    var cartItem = document.createElement('div');
-    cartItem.className = 'cart-item';
-    cartItem.innerHTML = `
-        <p>${title}</p>
-        <p>S$ ${price.toFixed(2)}</p>
-    `;
-    cartItemList.appendChild(cartItem);
-
-    // Update total price
-    var totalPrice = parseFloat(totalPriceElement.innerText);
-    totalPrice += price;
-    totalPriceElement.innerText = totalPrice.toFixed(2);
-
-    // Show cart confirmation popup
-    document.getElementById('cartConfirmationPopup').style.display = 'block';
-}
-
-// Function to close cart confirmation popup
-function closeCartPopup() {
-    document.getElementById('cartConfirmationPopup').style.display = 'none';
-}
