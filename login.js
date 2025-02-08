@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.3.0/firebase-analytics.js";
-import { getAuth, signInWithEmailAndPassword} from "https://www.gstatic.com/firebasejs/11.3.0/firebase-auth.js";
+import { getAuth, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/11.3.0/firebase-auth.js";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -44,3 +44,26 @@ submit.addEventListener("click", function(event){
   const password = document.getElementById('password').value;
   createAccount(email, password);
 });
+
+// Logout function
+const Logout = document.getElementById('signout');
+if (Logout) {
+  Logout.addEventListener("click", function(event){
+    event.preventDefault();
+    console.log('Sign out button clicked'); // Debug log
+    if (auth.currentUser) {
+      signOut(auth).then(() => {
+        alert('User has signed out');
+        window.location.href = 'index.html'; // Redirect to homepage or login page
+      }).catch((error) => {
+        console.error('Sign out error', error);
+        alert('Error signing out. Please try again.');
+      });
+    } else {
+      console.log('No user is currently signed in');
+      alert('No user is currently signed in');
+    }
+  });
+} else {
+  console.error('Sign out button not found');
+}
