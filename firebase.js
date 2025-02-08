@@ -18,21 +18,29 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
+
+// Initialize Firebase Auth
 const auth = getAuth(app);
 
-// Function to create a new user account
-function createAccount(email, password, firstName, lastName, streetAddress, postalCode, country) {
-  createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      // Signed in 
-      const user = userCredential.user;
-      console.log("User created:", user);
-
-      // You can add additional user information to Firestore or Realtime Database here if needed
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.error("Error creating user:", errorCode, errorMessage);
-    });
+// Function to create a new user
+async function createAccount(email, password) {
+  try {
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    const user = userCredential.user;
+    console.log("User account created:", user);
+    alert("Creating Account...");
+    window.location.href = "account.html";
+  } catch (error) {
+    console.error("Error creating account:", error.message);
+    alert(error.message);
+  }
 }
+
+// Add event listener to the submit button
+const submit = document.getElementById('submit');
+submit.addEventListener("click", function(event){
+  event.preventDefault();
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
+  createAccount(email, password);
+});

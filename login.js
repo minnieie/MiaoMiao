@@ -1,50 +1,46 @@
-import { useState } from "react";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { useRouter } from "next/router";  // For Next.js routing
-import { auth } from "./firebase";
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.0/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.3.0/firebase-analytics.js";
+import { getAuth, signInWithEmailAndPassword} from "https://www.gstatic.com/firebasejs/11.3.0/firebase-auth.js";
 
-export default function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const router = useRouter();  // To navigate after successful login
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyALuGv5fxVtyNv7QLcWupfa4btKvky52eU",
+  authDomain: "miaomiao-a78e5.firebaseapp.com",
+  databaseURL: "https://miaomiao-a78e5-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "miaomiao-a78e5",
+  storageBucket: "miaomiao-a78e5.firebasestorage.app",
+  messagingSenderId: "1013066846713",
+  appId: "1:1013066846713:web:0122e4e5a26f0163d06d28",
+  measurementId: "G-0VRJRRSG3P"
+};
 
-  const handleLogin = async (e) => {
-    e.preventDefault();  // Prevent form submission
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
 
-    try {
-      // Sign in with email and password
-      await signInWithEmailAndPassword(auth, email, password);
-      console.log("Login successful!");
+// Initialize Firebase Auth
+const auth = getAuth(app);
 
-      // Redirect to the account page upon successful login
-      router.push("/account");  // Or use `window.location.href` if not using Next.js
-    } catch (err) {
-      setError("Failed to login. Please check your credentials.");
-      console.error(err.message);
-    }
-  };
-
-  return (
-    <div>
-      <h2>Login Page</h2>
-      <form onSubmit={handleLogin}>
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button type="submit">Login</button>
-      </form>
-
-      {error && <p style={{ color: "red" }}>{error}</p>}  {/* Display error if login fails */}
-    </div>
-  );
+// Function to create a new user
+async function createAccount(email, password) {
+  try {
+    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+    const user = userCredential.user;
+    console.log("User account created:", user);
+    alert("Signing in...");
+    window.location.href = "account.html";
+  } catch (error) {
+    console.error("Error creating account:", error.message);
+    alert(error.message);
+  }
 }
+
+// Add event listener to the submit button
+const submit = document.getElementById('submit');
+submit.addEventListener("click", function(event){
+  event.preventDefault();
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
+  createAccount(email, password);
+});

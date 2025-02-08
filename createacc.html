@@ -6,7 +6,7 @@
     <title>Create Account</title>
     <link rel="stylesheet" href="style.css">
     <script defer src="script.js"></script>
-    <script type="module" src="firebase.js"></script> <!-- Include the firebase.js script -->
+    <script type="module" src="firebase.js" defer></script> <!-- Include the firebase.js script -->
 </head>
 <body>
     <!-- Nav Bar -->
@@ -29,30 +29,15 @@
         <section id="create-account-section" class="create-account-section">
             <h2>Create Your Account</h2>
             <form id="create-account-form">
-                <label for="email">Email or Username:</label>
-                <input type="text" id="email" placeholder="Enter your email or username" required>
+                <label for="email">Email:</label>
+                <input type="text" id="email" placeholder="Enter your email" required>
 
                 <label for="password">Password:</label>
                 <input type="password" id="password" placeholder="Enter your password" required>
 
-                <label for="country">Country:</label>
-                <input type="text" id="country" placeholder="Enter your country" required>
-
-                <label for="first-name">First Name:</label>
-                <input type="text" id="first-name" placeholder="Enter your first name" required>
-
-                <label for="last-name">Last Name:</label>
-                <input type="text" id="last-name" placeholder="Enter your last name" required>
-
-                <label for="street-address">Street Address:</label>
-                <input type="text" id="street-address" placeholder="Enter your street address" required>
-
-                <label for="postal-code">Postal Code:</label>
-                <input type="text" id="postal-code" placeholder="Enter your postal code" required>
-
-                <button type="submit">Create Account</button>
+                <button id="submit" type="submit">Create Account</button>
             </form>
-            <p>Already have an account? <a href="account.html" onclick="redirectToLogin()">Log In</a></p>
+            <p>Already have an account? <a href="signin.html" onclick="redirectToLogin()">Log In</a></p>
         </section>
     </main>
 
@@ -63,13 +48,8 @@
 
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
-            const country = document.getElementById('country').value;
-            const firstName = document.getElementById('first-name').value;
-            const lastName = document.getElementById('last-name').value;
-            const streetAddress = document.getElementById('street-address').value;
-            const postalCode = document.getElementById('postal-code').value;
 
-            createAccount(email, password, firstName, lastName, streetAddress, postalCode, country);
+            createAccount(email, password);
         });
 
         // Redirect to login page
