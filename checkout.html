@@ -5,134 +5,270 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout</title>
     <link rel="stylesheet" href="style.css">
-    <script type="module" src="firebase.js" defer></script> <!-- Include the firebase.js script -->
+    <script type="module" src="firebase.js" defer></script> 
 </head>
 <body>
-
-    <div class="co-checkout-container">
-        <!-- Breadcrumb -->
-        <p class="co-breadcrumb">Home / Your Bag</p>
-
-        <!-- Bag Details -->
-        <h2>Checkout (<span id="checkoutItemCount">0</span> items)</h2>
-
-        <div id="checkoutItemsContainer">
-            <p class="empty-cart-message">Your bag is empty</p>
-        </div>
-
-        <hr>
-
-        <!-- Order Summary -->
-        <div class="co-summary">
-            <p><strong>Subtotal:</strong> <span id="subtotalPrice">$0.00</span></p>
-            
-            <p><strong>Promotional Code:</strong> <span class="co-cancel-code">Cancel</span></p>
-            <div class="promo-container">
-                <input type="text" id="promoInput" class="co-promo-input" placeholder="Enter your promotional code">
-                <button id="applyPromo" class="co-apply-btn">Apply</button>
+        <!-- Nav Bar -->
+        <nav class="navbar">
+            <!-- Hamburger Button -->
+            <div class="nav-menu-icon" onclick="toggleMenu()">
+                <img src="figmaPics/hamburger.png" alt="Menu">
             </div>
-
-            <p><strong>Grand Total:</strong> <span id="grandTotal">$0.00</span></p>
+    
+            <!-- Logo -->
+            <div class="nav-logo">
+                <a href="index.html"><img src="figmaPics/logo.png" alt="Logo"></a>
+            </div>
+    
+            <!-- Right Icons -->
+            <div class="nav-3icons">
+                <a href="createacc.html"><img src="figmaPics/account.png" alt="Account"></a>
+                <a href="wishlist.html"><img src="figmaPics/heart.png" alt="Wishlist"></a>
+                <a href="bag.html"><img src="figmaPics/cart.png" alt="Bag"></a>
+            </div>
+        </nav>
+    
+        <div class="co-checkout-container" id="checkoutContainer">
+            <!-- Breadcrumb -->
+            <p class="co-breadcrumb">Home / Your Bag</p>
+    
+            <!-- Bag Details -->
+            <h2>Checkout (<span id="checkoutItemCount">0</span> items)</h2>
+    
+            <div id="checkoutItemsContainer">
+                <p class="empty-cart-message">Your bag is empty</p>
+            </div>
+    
+            <hr>
+    
+            <!-- Order Summary -->
+            <div class="co-summary" id="orderSummary">
+                <p><strong>Subtotal:</strong> <span id="subtotalPrice">$0.00</span></p>
+                <p><strong>Promotional Code:</strong> <span id="promoStatus"></span></p>
+                <div class="promo-container">
+                    <input type="text" class="co-promo-input" placeholder="Enter your promotional code" id="promoCodeInput">
+                    <button class="co-apply-btn" onclick="applyPromoCode()">Apply</button>
+                </div>
+                <p><strong>Grand Total:</strong> <span id="grandTotal">$0.00</span></p>
+            </div>
+    
+            <!-- Payment Methods -->
+            <div class="co-payment-methods" id="paymentMethods">
+                <img src="figmaPics/PayPal.png" alt="PayPal">
+                <img src="figmaPics/Mastercard.png" alt="MasterCard">
+                <img src="figmaPics/GooglePay.png" alt="Google Pay">
+            </div>
+    
+            <!-- Checkout Page Content -->
+            <div class="checkout-container">
+                <!-- Left Section: Express Checkout and Contact/Shipping -->
+                <div class="checkout-left" id="checkout-section">
+                    <h2>Checkout</h2>
+                    <!-- Contact Information -->
+                    <section class="contact-info">
+                        <form id="checkout-form" onsubmit="return validateForm()">
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                            <div class="checkbox">
+                                <input type="checkbox" id="email-updates" name="email-updates">
+                                <label for="email-updates">Sign up for updates and promotions</label>
+                            </div>
+    
+                            <!-- Shipping Address -->
+                            <h3>Shipping Address</h3>
+                            <div class="shipping-address">
+                                <label for="country">Country:</label>
+                                <select id="country" name="country" required>
+                                    <option value="Singapore">Singapore</option>
+                                    <option value="USA">United States</option>
+                                    <option value="UK">United Kingdom</option>
+                                </select>
+    
+                                <label for="first-name">First Name:</label>
+                                <input type="text" id="first-name" name="first-name" required>
+    
+                                <label for="last-name">Last Name:</label>
+                                <input type="text" id="last-name" name="last-name" required>
+    
+                                <label for="address">Address:</label>
+                                <input type="text" id="address" name="address" placeholder="Street address" required>
+    
+                                <label for="postal-code">Postal Code:</label>
+                                <input type="text" id="postal-code" name="postal-code" required>
+                            </div>
+                            <!-- Error message container -->
+                            <div id="error-message" style="color: red; display: none;"></div>
+                        </form>
+                    </section>
+                </div>
+    
+                <!-- Checkout Button -->
+                <button class="co-checkout-btn" onclick="submitForm()">CHECK OUT</button>
+            </div>
         </div>
-
-        <!-- Payment Methods -->
-        <div class="co-payment-methods">
-            <img src="figmaPics/PayPal.png" alt="PayPal">
-            <img src="figmaPics/Mastercard.png" alt="MasterCard">
-            <img src="figmaPics/GooglePay.png" alt="Google Pay">
+    
+        <!-- Thank You Message Container -->
+        <div id="thank-you-message" style="display:none; text-align:center; padding:20px;">
+            <h2>Thank you for your purchase!</h2>
+            <p>Your order is being processed, and we'll send you an email with the details soon.</p>
+            <div id="thankYouItemsContainer"></div>
+            
+            <!-- Return to Home Button -->
+            <button onclick="window.location.href='index.html'" style="padding: 10px 20px; font-size: 16px; margin-top: 20px; cursor: pointer;">
+                Return to Home
+            </button>
         </div>
-
-        <!-- Checkout Button -->
-        <button id="checkoutSubmit" class="co-checkout-btn">CHECK OUT</button>
-    </div>
-
-    <script>
-        // Function to load checkout items from local storage
-        function loadCheckoutItems() {
-            const checkoutContents = document.getElementById('checkoutItemsContainer');
-            const checkoutItemCount = document.getElementById('checkoutItemCount');
-            const subtotalPrice = document.getElementById('subtotalPrice');
-            const grandTotal = document.getElementById('grandTotal');
-            const promoInput = document.getElementById('promoInput');
-            const applyPromoButton = document.getElementById('applyPromo');
-            let cart = JSON.parse(localStorage.getItem('cart')) || [];
-            checkoutContents.innerHTML = '';
-
-            if (cart.length === 0) {
-                checkoutContents.innerHTML = '<p class="empty-cart-message">Your bag is empty</p>';
-                subtotalPrice.textContent = '$0.00';
-                grandTotal.textContent = '$0.00';
-            } else {
-                let subtotal = 0;
-                cart.forEach((product) => {
-                    let price = parseFloat(product.price) || 0;
-                    let totalItemPrice = price * product.quantity;
-                    subtotal += totalItemPrice;
-
-                    const productDiv = document.createElement('div');
-                    productDiv.className = 'co-product';
-                    productDiv.innerHTML = `
-                        <img src="${product.imageUrl}" alt="${product.title}" class="co-product-img">
-                        <div class="co-product-details">
-                            <p><strong>${product.title}</strong></p>
-                            <p>Price: <span class="price">$${price.toFixed(2)}</span></p>
-                            <p>Quantity: ${product.quantity}</p>
-                            <p>Total: <strong>$${totalItemPrice.toFixed(2)}</strong></p>
-                        </div>
-                    `;
-                    checkoutContents.appendChild(productDiv);
-                });
-
-                checkoutItemCount.textContent = cart.reduce((total, item) => total + item.quantity, 0);
-                subtotalPrice.textContent = `$${subtotal.toFixed(2)}`;
-                grandTotal.textContent = `$${subtotal.toFixed(2)}`;
-            }
-
-            // Applying promotional code
-            applyPromoButton.addEventListener('click', () => {
-                let promoCode = promoInput.value.trim();
-                if (promoCode === 'DISCOUNT10') {
-                    let discount = 0.1; // 10% discount
-                    let discountedTotal = subtotal * (1 - discount);
-                    grandTotal.textContent = `$${discountedTotal.toFixed(2)}`;
-                    alert("Promo code applied!");
+    
+        <!-- Move your JS files to the bottom -->
+        <script src="checkout.js"></script>  <!-- Make sure the file path is correct -->
+        <script>
+            let discountApplied = false;
+    
+            function loadCheckoutItems() {
+                const checkoutContents = document.getElementById('checkoutItemsContainer');
+                const checkoutItemCount = document.getElementById('checkoutItemCount');
+                const subtotalPrice = document.getElementById('subtotalPrice');
+                const grandTotal = document.getElementById('grandTotal');
+    
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                checkoutContents.innerHTML = '';
+    
+                if (cart.length === 0) {
+                    checkoutContents.innerHTML = '<p class="empty-cart-message">Your bag is empty</p>';
+                    subtotalPrice.textContent = '$0.00';
+                    grandTotal.textContent = '$0.00';
                 } else {
-                    alert("Invalid promo code.");
+                    let subtotal = 0;
+    
+                    cart.forEach((product) => {
+                        let price = parseFloat(product.price) || 0;
+                        let totalItemPrice = price * product.quantity;
+                        subtotal += totalItemPrice;
+    
+                        const productDiv = document.createElement('div');
+                        productDiv.className = 'co-product';
+                        productDiv.innerHTML = ` 
+                            <img src="${product.imageUrl}" alt="${product.title}" class="co-product-img">
+                            <div class="co-product-details">
+                                <p><strong>${product.title}</strong></p>
+                                <p>Price: <span class="price">$${price.toFixed(2)}</span></p>
+                                <p>Quantity: ${product.quantity}</p>
+                                <p>Total: <strong>$${totalItemPrice.toFixed(2)}</strong></p>
+                            </div>
+                        `;
+                        checkoutContents.appendChild(productDiv);
+                    });
+    
+                    checkoutItemCount.textContent = cart.reduce((total, item) => total + item.quantity, 0);
+                    subtotalPrice.textContent = `$${subtotal.toFixed(2)}`;
+                    grandTotal.textContent = `$${subtotal.toFixed(2)}`;
                 }
-            });
-        }
-
-        // Function to handle checkout process
-        function handleCheckout(event) {
-            event.preventDefault();
-
-            const firstName = document.getElementById('first-name').value;
-            const lastName = document.getElementById('last-name').value;
-            const address = document.getElementById('address').value;
-            const email = document.getElementById('email').value;
-
-            // Here you can proceed with the checkout process
-            console.log("Checkout Information:", {
-                firstName,
-                lastName,
-                address,
-                email
-            });
-
-            // Simulate submitting the order (e.g., saving to Firestore, processing payment)
-            alert("Order submitted successfully!");
-            window.location.href = "orderConfirmation.html";  // Redirect to order confirmation page
-        }
-
-        // Initialize the checkout page on load
-        window.onload = loadCheckoutItems;
-
-        // Attach event listener to checkout submit button
-        const checkoutSubmit = document.getElementById('checkoutSubmit');
-        if (checkoutSubmit) {
-            checkoutSubmit.addEventListener("click", handleCheckout);
-        }
-    </script>
-
-</body>
-</html>
+            }
+    
+            // Function to apply the promo code
+            function applyPromoCode() {
+                const promoCodeInput = document.getElementById('promoCodeInput').value.trim().toUpperCase();
+                const promoStatus = document.getElementById('promoStatus');
+                const grandTotal = document.getElementById('grandTotal');
+                const subtotalPrice = document.getElementById('subtotalPrice');
+                let subtotal = parseFloat(subtotalPrice.textContent.replace('$', ''));
+    
+                if (promoCodeInput === 'MIAOMIAO') {
+                    if (!discountApplied) {
+                        const discount = subtotal * 0.50;  // 50% discount
+                        const newTotal = subtotal - discount;
+                        grandTotal.textContent = `$${newTotal.toFixed(2)}`;
+                        promoStatus.textContent = 'Applied! (50% discount)';
+                        discountApplied = true;
+                    } else {
+                        promoStatus.textContent = 'Promo code already applied.';
+                    }
+                } else {
+                    promoStatus.textContent = 'Invalid promo code.';
+                }
+            }
+    
+            // Form validation function
+            function validateForm() {
+                const email = document.getElementById('email').value;
+                const firstName = document.getElementById('first-name').value;
+                const lastName = document.getElementById('last-name').value;
+                const address = document.getElementById('address').value;
+                const postalCode = document.getElementById('postal-code').value;
+    
+                let errorMessage = '';  // Store all the error messages
+    
+                // Simple email validation
+                const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+                if (!emailRegex.test(email)) {
+                    errorMessage += 'Please enter a valid email address.\n';
+                }
+    
+                // Check if all required fields are filled
+                if (!firstName) {
+                    errorMessage += 'Please enter your first name.\n';
+                }
+    
+                if (!lastName) {
+                    errorMessage += 'Please enter your last name.\n';
+                }
+    
+                if (!address) {
+                    errorMessage += 'Please enter your address.\n';
+                }
+    
+                if (!postalCode) {
+                    errorMessage += 'Please enter your postal code.\n';
+                }
+    
+                // If there are errors, show them
+                if (errorMessage) {
+                    displayErrorMessage(errorMessage);
+                    return false;
+                }
+    
+                // Form is valid
+                return true;
+            }
+    
+            // Display error message function
+            function displayErrorMessage(message) {
+                const errorMessageDiv = document.getElementById('error-message');
+                errorMessageDiv.textContent = message;
+                errorMessageDiv.style.display = 'block';
+            }
+    
+            // Call the checkout button submission function
+            function submitForm() {
+                if (validateForm()) {
+                    // Hide unnecessary elements
+                    document.getElementById('checkoutContainer').style.display = 'none';  // Hide the whole checkout container
+    
+                    // Show the "Thank You" message
+                    document.getElementById('thank-you-message').style.display = 'block';
+    
+                    // Show only the items being purchased
+                    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                    const thankYouItemsContainer = document.getElementById('thankYouItemsContainer');
+                    thankYouItemsContainer.innerHTML = '';
+    
+                    cart.forEach((product) => {
+                        const productDiv = document.createElement('div');
+                        productDiv.className = 'co-product';
+                        productDiv.innerHTML = ` 
+                            <img src="${product.imageUrl}" alt="${product.title}" class="co-product-img">
+                            <div class="co-product-details">
+                                <p><strong>${product.title}</strong></p>
+                                <p>Quantity: ${product.quantity}</p>
+                                <p>Total: <strong>$${(product.price * product.quantity).toFixed(2)}</strong></p>
+                            </div>
+                        `;
+                        thankYouItemsContainer.appendChild(productDiv);
+                    });
+                }
+            }
+    
+            window.onload = loadCheckoutItems;
+        </script>
+    </body>
+    </html>
