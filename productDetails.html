@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Navigation Bar</title>
+    <title>Product Details - MiaoMiao Store</title>
     <link rel="stylesheet" href="style.css">
     <script defer src="script.js"></script> 
 </head>
@@ -98,12 +98,33 @@
                 document.getElementById('productPrice').textContent = price;
                 document.getElementById('productImage').src = imageUrl;
             }
+
+            const addToBagButton = document.getElementById('addToBagButton');
+            addToBagButton.addEventListener('click', () => {
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                const product = {
+                    title: title,
+                    price: price,
+                    imageUrl: imageUrl,
+                    quantity: 1,
+                };
+                
+                const existingProductIndex = cart.findIndex(item => item.title === title);
+                if (existingProductIndex > -1) {
+                    cart[existingProductIndex].quantity += 1; // Increment quantity if product already in cart
+                } else {
+                    cart.push(product);
+                }
+
+                localStorage.setItem('cart', JSON.stringify(cart));
+                alert(`${title} has been added to your bag!`);
+            });
         });
+
         function toggleMenu() {
             var menu = document.getElementById("dropdown");
             menu.classList.toggle("show");
         }
-        
     </script>
 </body>
 </html>
