@@ -84,61 +84,35 @@
         menu.classList.toggle("show");
     }
 
-    // Load cart items from localStorage and display them
-    function loadCartItems() {
-        const cartItemsContainer = document.getElementById('cartItemsContainer');
+    // Load bag items from localStorage and display them
+    function loadBagItems() {
+        const bagContents = document.getElementById('cartItemsContainer');
         const cartItemCount = document.getElementById('cartItemCount');
-        let cart = JSON.parse(localStorage.getItem('cartItems')) || [];
-        cartItemsContainer.innerHTML = '';
+        let bag = JSON.parse(localStorage.getItem('bag')) || [];
+        bagContents.innerHTML = '';
 
-        if (cart.length === 0) {
-            cartItemsContainer.innerHTML = '<p class="empty-cart-message">Your bag is empty</p>';
+        if (bag.length === 0) {
+            bagContents.innerHTML = '<p class="empty-cart-message">Your bag is empty</p>';
         } else {
-            cart.forEach(item => {
-                const cartItem = document.createElement('div');
-                cartItem.className = 'cart-item';
-                cartItem.innerHTML = `
-                    <img src="${item.image}" alt="${item.title}" />
+            bag.forEach(product => {
+                const productDiv = document.createElement('div');
+                productDiv.className = 'cart-item';
+                productDiv.innerHTML = `
+                    <img src="${product.imageUrl}" alt="${product.title}" />
                     <div class="cart-item-info">
-                        <h3>${item.title}</h3>
-                        <p>S$${item.price.toFixed(2)}</p>
-                        <div class="quantity">
-                            <button class="quantity-btn" onclick="changeQuantity('${item.title}', -1)">-</button>
-                            <span>${item.quantity}</span>
-                            <button class="quantity-btn" onclick="changeQuantity('${item.title}', 1)">+</button>
-                        </div>
-                        <button class="remove-item" onclick="removeItem('${item.title}')">Remove</button>
+                        <h3>${product.title}</h3>
+                        <p>${product.price}</p>
                     </div>
                 `;
-                cartItemsContainer.appendChild(cartItem);
+                bagContents.appendChild(productDiv);
             });
         }
 
-        cartItemCount.textContent = cart.length;
+        cartItemCount.textContent = bag.length;
     }
 
-    // Function to change item quantity
-    function changeQuantity(title, change) {
-        let cart = JSON.parse(localStorage.getItem('cartItems')) || [];
-        let item = cart.find(item => item.title === title);
-        if (item) {
-            item.quantity += change;
-            if (item.quantity < 1) item.quantity = 1;
-            localStorage.setItem('cartItems', JSON.stringify(cart));
-            loadCartItems(); // Refresh the cart display
-        }
-    }
-
-    // Function to remove item from cart
-    function removeItem(title) {
-        let cart = JSON.parse(localStorage.getItem('cartItems')) || [];
-        cart = cart.filter(item => item.title !== title);
-        localStorage.setItem('cartItems', JSON.stringify(cart));
-        loadCartItems();
-    }
-
-    // Load cart items on page load
-    window.onload = loadCartItems;
+    // Load bag items on page load
+    window.onload = loadBagItems;
 </script>
 </body>
 </html>

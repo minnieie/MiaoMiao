@@ -12,7 +12,7 @@
     <!-- Nav Bar -->
     <nav class="navbar">
         <!-- Hamburger Button -->
-        <div class="nav-menu-icon">
+        <div class="nav-menu-icon" onclick="toggleMenu()">
             <img src="figmaPics/hamburger.png" alt="Menu">
         </div>
 
@@ -103,6 +103,12 @@
         </div>
     </div>
 
+    <script>
+        function toggleMenu() {
+            var menu = document.getElementById("dropdown");
+            menu.classList.toggle("show");
+        }
+    </script>
     <script src="script.js"></script>
 </body>
 </html>

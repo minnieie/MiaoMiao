@@ -57,7 +57,7 @@ if (Logout) {
     console.log('Sign out button clicked'); // Debug log
     if (auth.currentUser) {
       signOut(auth).then(() => {
-        alert('User has signed out');
+        alert('MiaoMiao has signed out');
         window.location.href = 'index.html'; // Redirect to homepage or login page
       }).catch((error) => {
         console.error('Sign out error', error);

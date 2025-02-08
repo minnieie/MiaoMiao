@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<html lang="en"><!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -13,7 +12,7 @@
     <!-- Nav Bar -->
     <nav class="navbar">
         <!-- Hamburger Button -->
-        <div class="nav-menu-icon">
+        <div class="nav-menu-icon" id="hamburgerButton">
             <img src="figmaPics/hamburger.png" alt="Menu">
         </div>
 
@@ -103,6 +102,14 @@
         </div>
     </div>
 
+    <script>
+        function toggleMenu() {
+            var menu = document.getElementById("dropdown");
+            menu.classList.toggle("show");
+        }
+
+        document.querySelector('.nav-menu-icon').addEventListener('click', toggleMenu);
+    </script>
     <script src="script.js"></script>
 </body>
 </html>

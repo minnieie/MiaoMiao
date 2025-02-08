@@ -205,3 +205,22 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('productImage').src = imageUrl;
     }
 });
+
+//Adding to bag in bag.html
+document.getElementById('addToBagButton').addEventListener('click', () => {
+    const productTitle = document.getElementById('productTitle').textContent;
+    const productPrice = document.getElementById('productPrice').textContent;
+    const productImageUrl = document.getElementById('productImage').src;
+
+    const product = {
+        title: productTitle,
+        price: productPrice,
+        imageUrl: productImageUrl
+    };
+
+    let bag = JSON.parse(localStorage.getItem('bag')) || [];
+    bag.push(product);
+    localStorage.setItem('bag', JSON.stringify(bag));
+
+    alert('Product added to bag!');
+});

@@ -22,7 +22,7 @@
 
         <!-- Right Icons -->
         <div class="nav-3icons">
-            <a href="login.html"><img src="figmaPics/account.png" alt="Account"></a>
+            <a href="createacc.html"><img src="figmaPics/account.png" alt="Account"></a>
             <a href="wishlist.html"><img src="figmaPics/heart.png" alt="Wishlist"></a>
             <a href="bag.html"><img src="figmaPics/cart.png" alt="Bag"></a>
         </div>
@@ -42,7 +42,7 @@
             <img id="productImage" alt="Product Image" class="product-image">
             <h2 id="productTitle"></h2>
             <p class="price" id="productPrice"></p>
-            <button class="add-to-bag">Add To Bag</button>
+            <button id="addToBagButton" class="add-to-bag">Add To Bag</button>
             <button class="add-to-wishlist">Add To Wishlist</button>
             <button class="back-btn">Back</button>
         </div>
@@ -99,6 +99,11 @@
                 document.getElementById('productImage').src = imageUrl;
             }
         });
+        function toggleMenu() {
+            var menu = document.getElementById("dropdown");
+            menu.classList.toggle("show");
+        }
+        
     </script>
 </body>
 </html>

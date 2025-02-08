@@ -24,6 +24,15 @@
         </div>
     </nav>
 
+    <!-- Dropdown Menu -->
+    <div class="nav-dropdown-menu" id="dropdown">
+        <a href="index.html">Homepage</a>
+        <a href="catalog.html">Catalog</a>
+        <a href="vouchers.html">Vouchers & Discounts</a>
+        <a href="miaomiaopass.html">Miaomiao Pass</a>
+        <a href="aboutus.html">About Us</a> 
+    </div>
+
     <main>
         <!-- Create Account Section -->
         <section id="create-account-section" class="create-account-section">
@@ -79,7 +88,7 @@
 
         // Function to toggle the menu
         function toggleMenu() {
-            var menu = document.getElementById("nav-menu");
+            var menu = document.getElementById("dropdown");
             menu.classList.toggle("show");
         }
     </script>
