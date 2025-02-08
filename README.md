@@ -14,7 +14,7 @@ The design process for MiaoMiao was centered around understanding the needs of f
 - As a mobile user, I want an optimized and responsive interface, so that I can browse and shop seamlessly on my phone. 
 
 ### Wireframes and Design Documentations 
-To visualize the platform's layout and user flow, we created wireframes and mockups. These resources help illustrate the structure of MiaoMiao’s interface and ensure a smooth user experience. You can access them via the [FigmaURL] (https://www.figma.com/design/xn041QR41hO5SJIaR55zHu/Mobile-view?node-id=6-2&m=dev&t=SEK8VbthqaO3QLAk-1). 
+To visualize the platform's layout and user flow, we created wireframes and mockups. These resources help illustrate the structure of MiaoMiao’s interface and ensure a smooth user experience. You can access them via the [Figma URL](https://www.figma.com/design/xn041QR41hO5SJIaR55zHu/Mobile-view?node-id=6-2&m=dev&t=SEK8VbthqaO3QLAk-1). 
 
 ## Features
 ### Existing Features
@@ -104,3 +104,7 @@ To visualize the platform's layout and user flow, we created wireframes and mock
 
 ### Acknowledgements 
 + I received inspiration for this project from [POP MART's official website](https://eu.jellycat.com/)
+
+## Individual Contributions to The Website
+### Geng Bai Hui
+- 

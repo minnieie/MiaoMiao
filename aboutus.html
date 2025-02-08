@@ -67,5 +67,37 @@
         </div>
     </section>    
 
+    <!-- Footer -->
+<aside class="newsletter-signup">
+    <h2>SIGN UP FOR JOY DELIVERED TO YOUR INBOX</h2>
+    <p>Sign up for our email newsletter to be in the know about new arrivals, special offers, and exclusive events. When you sign up you'll receive 10% off your first purchase! When you become a MeowMeow's Insider you'll be able to create a baby.</p>
+    
+    <!-- <input type="email" placeholder="Enter your email address here"> -->
+    <a href="subscribe.html"><button onclick="thankYouMessage()">JOIN NOW</button></a>
+
+    <!-- Thank You message -->
+    <div id="thankYouMessage" style="display:none; color: green;">
+        <p>Thank you for subscribing to our newsletter! You'll receive 10% off your first purchase.</p>
+    </div>
+
+    <div class="social-links">
+        <a href="#">
+            <img src="figmaPics/facebook.png" alt="Facebook">
+        </a>
+        <a href="#">
+            <img src="figmaPics/Instagram.png" alt="Instagram">
+        </a>
+        <a href="#">
+            <img src="figmaPics/x.png" alt="Twitter">
+        </a>
+    </div>
+</aside>
+    <script>
+        function toggleMenu() {
+            var menu = document.getElementById("nav-menu");
+            menu.classList.toggle("show");
+        }
+    </script>
+
 </body>
 </html>
