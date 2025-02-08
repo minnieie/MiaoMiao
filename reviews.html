@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Reviews</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script> 
+    <script defer src="post.js"></script>
+</head>
+<body>
+    <!-- Nav Bar -->
+    <nav class="navbar">
+        <!-- Hamburger Button -->
+        <div class="nav-menu-icon" onclick="toggleMenu()">
+            <img src="figmaPics/hamburger.png" alt="Menu">
+        </div>
+
+        <!-- Logo -->
+        <div class="nav-logo">
+            <a href="index.html"><img src="figmaPics/logo.png" alt="Logo"></a>
+        </div>
+
+        <!-- Right Icons -->
+        <div class="nav-3icons">
+            <a href="login.html"><img src="figmaPics/account.png" alt="Account"></a>
+            <a href="wishlist.html"><img src="figmaPics/heart.png" alt="Wishlist"></a>
+            <a href="bag.html"><img src="figmaPics/cart.png" alt="Bag"></a>
+        </div>
+    </nav>
+
+    <!-- Dropdown Menu -->
+    <div class="nav-dropdown-menu" id="dropdown">
+        <a href="index.html">Homepage</a>
+        <a href="catalog.html">Catalog</a>
+        <a href="vouchers.html">Vouchers & Discounts</a>
+        <a href="miaomiaopass.html">Miaomiao Pass</a>
+        <a href="aboutus.html">About Us</a> 
+    </div>
+
+    <section class="reviews-page">
+        <h2 class="reviews-heading">Customer Reviews</h2>
+    
+        <div class="review-item">
+            <img src="figmaPics/customer1.png" alt="Paul" class="profile-pic">
+            <div>
+                <p class="review-name">PAUL</p>
+                <p class="review-stars">★★★★★</p>
+                <p class="review-text">"Absolutely stunning! The details on this figurine are incredible, and the paint job is flawless. A must-have for any collector!"</p>
+            </div>
+        </div>
+    
+        <div class="review-item">
+            <img src="figmaPics/customer2.png" alt="Kimberly" class="profile-pic">
+            <div>
+                <p class="review-name">KIMBERLY</p>
+                <p class="review-stars">★★★★☆</p>
+                <p class="review-text">"Good quality, but the packaging could be better. Mine arrived with a slightly bent accessory, but overall, I'm happy with it."</p>
+            </div>
+        </div>
+    
+        <div class="review-item">
+            <img src="figmaPics/customer3.png" alt="Jasmine" class="profile-pic">
+            <div>
+                <p class="review-name">JASMINE</p>
+                <p class="review-stars">★★★☆☆</p>
+                <p class="review-text">"Decent figurine for the price, but the paint job has minor flaws. Still, it looks great from a distance."</p>
+            </div>
+        </div>
+    
+        <div class="review-item">
+            <img src="figmaPics/customer4.png" alt="Levi" class="profile-pic">
+            <div>
+                <p class="review-name">LEVI</p>
+                <p class="review-stars">★★★★★</p>
+                <p class="review-text">"Perfect addition to my collection! The pose is dynamic, and it really brings the character to life. Worth every penny!"</p>
+            </div>
+        </div>
+    
+        <div class="review-item">
+            <img src="figmaPics/customer5.png" alt="Chris" class="profile-pic">
+            <div>
+                <p class="review-name">CHRIS</p>
+                <p class="review-stars">★★★★★</p>
+                <p class="review-text">"This figurine exceeded my expectations! The sculpting is incredibly detailed, and the paintwork is flawless. It looks exactly like the character, and the dynamic pose makes it stand out on my shelf. Definitely worth the price!"</p>
+            </div> 
+        </div>
+    
+        <button class="post-review">Post</button>
+    </section>
+    
+    <div class="review-modal">
+        <div class="review-modal-content">
+            <span class="close-btn">&times;</span>
+            <div class="star-rating">
+                <span class="rstar" data-value="1">☆</span>
+                <span class="rstar" data-value="2">☆</span>
+                <span class="rstar" data-value="3">☆</span>
+                <span class="rstar" data-value="4">☆</span>
+                <span class="rstar" data-value="5">☆</span>
+            </div>
+            <div class="image-upload">
+                <label for="upload-img" class="upload-box">Add Image</label>
+                <input type="file" id="upload-img" accept="image/*" hidden>
+                <img id="preview-img" src="" alt="" class="preview-img">
+            </div>
+            <textarea class="caption-input" placeholder="Add a caption..."></textarea>
+            <button class="submit-review">Post</button>
+        </div>
+    </div>
+    
+        <!-- Points Earned Popup -->
+    <div class="points-popup">
+        <div class="points-popup-content">
+            <span class="close-points-btn">&times;</span>
+            <img src="figmaPics/write.png" alt="Review Reward" class="reward-img">
+            <p><strong>You earn 5 Pts for writing a review!</strong></p>
+        </div>
+    </div>
+
+</body>
+</html>
