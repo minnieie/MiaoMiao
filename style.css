@@ -81,14 +81,10 @@ nav {
 
 /* Section Headers */
 .section-header {
-    text-align: left;
-    color: #ffffff;
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    font-family: 'Comic Sans MS', sans-serif;
-    font-weight: 600;
-    padding-left: 1rem;
-    background-color: #000;
+    margin-bottom: 0; /* Reduce bottom margin */
+    padding-bottom: 0; /* Reduce padding */
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: 20px;
 }
 
 /* Container Styles */
@@ -132,7 +128,7 @@ nav {
     white-space: nowrap;
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
-    background-color: #000;
+    /* background-color: #000; */
 }
 
 .featured-section .card {
@@ -146,7 +142,7 @@ nav {
     width: 100%;
     height: auto;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
 }
 
 
@@ -170,6 +166,8 @@ nav {
     scroll-behavior: smooth; /* Smooth scrolling */
     -webkit-overflow-scrolling: touch; /* Enable smooth scrolling on touch devices */
     white-space: nowrap; /* Prevent wrapping of cards */
+    max-width: 90%; /* Reduce width */
+    margin: auto; /* Center the section */
 }
 
 .best-sellers-section .card {
@@ -178,10 +176,11 @@ nav {
     padding: 1rem; /* Keep padding */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Keep box-shadow */
     display: inline-block; /* Ensure cards are inline for horizontal scrolling */
+    width: 300px; 
 }
 
 .best-sellers-section .card img {
-    width: 100%;
+    width: 300px;
     height: auto; /* Ensure the image is not cropped */
     object-fit: cover;
     border-radius: 4px;
@@ -209,6 +208,21 @@ nav {
     background: linear-gradient(45deg, #ff8e53, #ff6b6b); /* Hover effect */
     transform: scale(1.05); /* Slightly enlarge on hover */
 }
+
+.new-arrivals-section {
+    background-color: white !important;
+    
+}
+
+.new-arrivals-section .container {
+    background-color: transparent !important; /* Ensure the inner container does not override */
+}
+
+.new-arrivals-section .card {
+    margin: 5px; /* Reduce margin between cards */
+    padding: 0; /* Ensure no unnecessary padding */
+}
+
 
 /* Responsive Styles */
 @media (max-width: 768px) {
