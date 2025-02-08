@@ -38,12 +38,16 @@ async function createAccount(email, password) {
 
 // Add event listener to the submit button
 const submit = document.getElementById('submit');
-submit.addEventListener("click", function(event){
-  event.preventDefault();
-  const email = document.getElementById('email').value;
-  const password = document.getElementById('password').value;
-  createAccount(email, password);
-});
+if (submit) {
+  submit.addEventListener("click", function(event){
+    event.preventDefault();
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    createAccount(email, password);
+  });
+} else {
+  console.error('Submit button not found');
+}
 
 // Logout function
 const Logout = document.getElementById('signout');
