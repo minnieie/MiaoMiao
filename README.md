@@ -1,4 +1,5 @@
 # MiaoMiao 
+GitHub Link: https://github.com/minnieie/MiaoMiao
 
 Welcome to MiaoMiao, an immersive **e-commerce** platform designed for figurine collectors and enthusiasts! Our platform offers a seamless shopping experience, combining modern web technologies with an engaging user interface. Whether you're browsing on desktop or mobile, MiaoMiao's responsive design ensures smooth navigation and an intuitive purchasing process.
 
