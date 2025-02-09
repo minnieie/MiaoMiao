@@ -102,6 +102,10 @@ nav {
     height: 10px;
 }
 
+a {
+    text-decoration: none; /* Removes underline */
+}
+
 .container::-webkit-scrollbar-thumb {
     background-color: #888;
     border-radius: 10px;
@@ -1614,6 +1618,7 @@ button {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     margin: 0 auto;
     margin-top: 100px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 /* Title */
@@ -2119,6 +2124,25 @@ button:active {
 
 .popup button:hover {
     background-color: #0056b3;
+}
+.view-3d-model {
+    display: block;
+    width: 100%;
+    max-width: 250px;
+    margin: 15px auto;
+    padding: 12px;
+    background-color: #4CAF50; /* Green button */
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 20px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.view-3d-model:hover {
+    background-color: #45a049; /* Darker green on hover */
 }
 /* 
 @media (max-width: 768px) {

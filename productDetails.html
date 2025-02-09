@@ -142,6 +142,23 @@ document.addEventListener('DOMContentLoaded', () => {
       alert(`${title} is already in your wishlist.`);
     }
   });
+
+  // Define 3D model links for specific products
+  const product3DLinks = {
+    "Hello Kitty Food Town Series Scene Set": "https://sketchfab.com/3d-models/hello-kitty-figurine-13fdad84e9f145ffa073ba8f2b8ddfab",
+    "Sanrio characters Sweet Best Series": "https://sketchfab.com/3d-models/kuromi-f9910a85e0ab4ac18f692d477b26b1bc",
+    "Skull Panda Warmth Series Taste From the Memory": "https://sketchfab.com/3d-models/skull-panda-warmth-series-taste-from-the-memory-83a8e01a60ec42a3b2bb05a72e5f0d2f"
+  };
+
+  if (product3DLinks[title]) {
+    const modelLink = document.createElement('a');
+    modelLink.href = product3DLinks[title]; // Set specific link for each product
+    modelLink.target = "_blank";
+    modelLink.classList.add('view-3d-model');
+    modelLink.textContent = "View 3D Model";
+
+    document.querySelector('.details-container').appendChild(modelLink);
+  }
 });
 
 function toggleMenu() {
