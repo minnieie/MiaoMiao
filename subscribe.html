@@ -49,12 +49,39 @@
         </div>
     
         <button class="join-btn" onclick="showThankYouMessage()">JOIN NOW</button>
-
+    
         <!-- Hidden Thank You Message -->
-        <div id="thankYouMessage" style="display: none;">
-            <h3 id="thankYouText"></h3> <!-- Dynamic Thank You Message -->
+        <div id="thankYouMessage" class="thank-you-message">
+            <h3 id="thankYouText"></h3>
         </div>
     </section>
     
+    <script>
+        function toggleMenu() {
+            var menu = document.getElementById("dropdown");
+            menu.classList.toggle("show");
+        }
+
+        function showThankYouMessage() {
+            const emailInput = document.getElementById("email").value.trim();
+            const thankYouDiv = document.getElementById("thankYouMessage");
+            const thankYouText = document.getElementById("thankYouText");
+        
+            if (emailInput === "") {
+                alert("Please enter your email or username.");
+                return;
+            }
+        
+            thankYouText.textContent = `Thank you for joining, ${emailInput}😊!`;
+            thankYouDiv.style.display = "block";
+        
+            // Optional: Hide the form after submission
+            setTimeout(() => {
+                thankYouDiv.style.display = "none";
+            }, 3000); // Message disappears after 3 seconds
+        }
+    </script>
+
 </body>
 </html>
+
