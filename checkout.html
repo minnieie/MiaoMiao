@@ -51,14 +51,23 @@
                 </div>
                 <p><strong>Grand Total:</strong> <span id="grandTotal">$0.00</span></p>
             </div>
-    
+
             <!-- Payment Methods -->
             <div class="co-payment-methods" id="paymentMethods">
-                <img src="figmaPics/PayPal.png" alt="PayPal">
-                <img src="figmaPics/Mastercard.png" alt="MasterCard">
-                <img src="figmaPics/GooglePay.png" alt="Google Pay">
+                <label style="cursor: pointer;">
+                    <input type="radio" name="payment-method" value="Google Pay" style="display: none;">
+                    <img src="figmaPics/GooglePay.png" alt="Google Pay" onclick="this.previousElementSibling.checked = true;">
+                </label>
+                <label style="cursor: pointer;">
+                    <input type="radio" name="payment-method" value="PayPal" style="display: none;">
+                    <img src="figmaPics/PayPal.png" alt="PayPal" onclick="this.previousElementSibling.checked = true;">
+                </label>
+                <label style="cursor: pointer;">
+                    <input type="radio" name="payment-method" value="MasterCard" style="display: none;">
+                    <img src="figmaPics/Mastercard.png" alt="MasterCard" onclick="this.previousElementSibling.checked = true;">
+                </label>
             </div>
-    
+            
             <!-- Checkout Page Content -->
             <div class="checkout-container">
                 <!-- Left Section: Express Checkout and Contact/Shipping -->
@@ -118,157 +127,183 @@
                 Return to Home
             </button>
         </div>
-    
-        <!-- Move your JS files to the bottom -->
+        
         <script src="checkout.js"></script>  <!-- Make sure the file path is correct -->
         <script>
-            let discountApplied = false;
-    
-            function loadCheckoutItems() {
-                const checkoutContents = document.getElementById('checkoutItemsContainer');
-                const checkoutItemCount = document.getElementById('checkoutItemCount');
-                const subtotalPrice = document.getElementById('subtotalPrice');
-                const grandTotal = document.getElementById('grandTotal');
-    
-                let cart = JSON.parse(localStorage.getItem('cart')) || [];
-                checkoutContents.innerHTML = '';
-    
-                if (cart.length === 0) {
-                    checkoutContents.innerHTML = '<p class="empty-cart-message">Your bag is empty</p>';
-                    subtotalPrice.textContent = '$0.00';
-                    grandTotal.textContent = '$0.00';
+        let discountApplied = false;
+
+        function loadCheckoutItems() {
+            const checkoutContents = document.getElementById('checkoutItemsContainer');
+            const checkoutItemCount = document.getElementById('checkoutItemCount');
+            const subtotalPrice = document.getElementById('subtotalPrice');
+            const grandTotal = document.getElementById('grandTotal');
+
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            checkoutContents.innerHTML = '';
+
+            if (cart.length === 0) {
+                checkoutContents.innerHTML = '<p class="empty-cart-message">Your bag is empty</p>';
+                subtotalPrice.textContent = '$0.00';
+                grandTotal.textContent = '$0.00';
+            } else {
+                let subtotal = 0;
+
+                cart.forEach((product) => {
+                    let price = parseFloat(product.price) || 0;
+                    let totalItemPrice = price * product.quantity;
+                    subtotal += totalItemPrice;
+
+                    const productDiv = document.createElement('div');
+                    productDiv.className = 'co-product';
+                    productDiv.innerHTML = ` 
+                        <img src="${product.imageUrl}" alt="${product.title}" class="co-product-img">
+                        <div class="co-product-details">
+                            <p><strong>${product.title}</strong></p>
+                            <p>Price: <span class="price">$${price.toFixed(2)}</span></p>
+                            <p>Quantity: ${product.quantity}</p>
+                            <p>Total: <strong>$${totalItemPrice.toFixed(2)}</strong></p>
+                        </div>
+                    `;
+                    checkoutContents.appendChild(productDiv);
+                });
+
+                checkoutItemCount.textContent = cart.reduce((total, item) => total + item.quantity, 0);
+                subtotalPrice.textContent = `$${subtotal.toFixed(2)}`;
+                grandTotal.textContent = `$${subtotal.toFixed(2)}`;
+            }
+        }
+
+        // Function to apply the promo code
+        function applyPromoCode() {
+            const promoCodeInput = document.getElementById('promoCodeInput').value.trim().toUpperCase();
+            const promoStatus = document.getElementById('promoStatus');
+            const grandTotal = document.getElementById('grandTotal');
+            const subtotalPrice = document.getElementById('subtotalPrice');
+            let subtotal = parseFloat(subtotalPrice.textContent.replace('$', ''));
+
+            if (promoCodeInput === 'MIAOMIAO') {
+                if (!discountApplied) {
+                    const discount = subtotal * 0.50;  // 50% discount
+                    const newTotal = subtotal - discount;
+                    grandTotal.textContent = `$${newTotal.toFixed(2)}`;
+                    promoStatus.textContent = 'Applied! (50% discount)';
+                    discountApplied = true;
                 } else {
-                    let subtotal = 0;
-    
-                    cart.forEach((product) => {
-                        let price = parseFloat(product.price) || 0;
-                        let totalItemPrice = price * product.quantity;
-                        subtotal += totalItemPrice;
-    
-                        const productDiv = document.createElement('div');
-                        productDiv.className = 'co-product';
-                        productDiv.innerHTML = ` 
-                            <img src="${product.imageUrl}" alt="${product.title}" class="co-product-img">
-                            <div class="co-product-details">
-                                <p><strong>${product.title}</strong></p>
-                                <p>Price: <span class="price">$${price.toFixed(2)}</span></p>
-                                <p>Quantity: ${product.quantity}</p>
-                                <p>Total: <strong>$${totalItemPrice.toFixed(2)}</strong></p>
-                            </div>
-                        `;
-                        checkoutContents.appendChild(productDiv);
-                    });
-    
-                    checkoutItemCount.textContent = cart.reduce((total, item) => total + item.quantity, 0);
-                    subtotalPrice.textContent = `$${subtotal.toFixed(2)}`;
-                    grandTotal.textContent = `$${subtotal.toFixed(2)}`;
+                    promoStatus.textContent = 'Promo code already applied.';
+                }
+            } else {
+                promoStatus.textContent = 'Invalid promo code.';
+            }
+        }
+
+        // Form validation function
+        function validateForm() {
+            const email = document.getElementById('email').value;
+            const firstName = document.getElementById('first-name').value;
+            const lastName = document.getElementById('last-name').value;
+            const address = document.getElementById('address').value;
+            const postalCode = document.getElementById('postal-code').value;
+
+            let errorMessage = '';  // Store all the error messages
+
+            // Simple email validation
+            const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+            if (!emailRegex.test(email)) {
+                errorMessage += 'Please enter a valid email address.\n';
+            }
+
+            // Check if all required fields are filled
+            if (!firstName) {
+                errorMessage += 'Please enter your first name.\n';
+            }
+
+            if (!lastName) {
+                errorMessage += 'Please enter your last name.\n';
+            }
+
+            if (!address) {
+                errorMessage += 'Please enter your address.\n';
+            }
+
+            if (!postalCode) {
+                errorMessage += 'Please enter your postal code.\n';
+            }
+
+            // If there are errors, show them
+            if (errorMessage) {
+                displayErrorMessage(errorMessage);
+                return false;
+            }
+
+            // Form is valid
+            return true;
+        }
+
+        // Display error message function
+        function displayErrorMessage(message) {
+            const errorMessageDiv = document.getElementById('error-message');
+            errorMessageDiv.textContent = message;
+            errorMessageDiv.style.display = 'block';
+        }
+
+        // Call the checkout button submission function
+        function submitForm() {
+            if (validateForm()) {
+                // Hide unnecessary elements
+                document.getElementById('checkoutContainer').style.display = 'none';  // Hide the whole checkout container
+
+                // Show the "Thank You" message
+                document.getElementById('thank-you-message').style.display = 'block';
+
+                // Show only the items being purchased
+                const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                const thankYouItemsContainer = document.getElementById('thankYouItemsContainer');
+                thankYouItemsContainer.innerHTML = '';
+
+                cart.forEach((product) => {
+                    const productDiv = document.createElement('div');
+                    productDiv.className = 'co-product';
+                    productDiv.innerHTML = ` 
+                        <img src="${product.imageUrl}" alt="${product.title}" class="co-product-img">
+                        <div class="co-product-details">
+                            <p><strong>${product.title}</strong></p>
+                            <p>Quantity: ${product.quantity}</p>
+                            <p>Total: <strong>$${(product.price * product.quantity).toFixed(2)}</strong></p>
+                        </div>
+                    `;
+                    thankYouItemsContainer.appendChild(productDiv);
+                });
+                // Determine the payment method and show the success message
+                const paymentMethod = getSelectedPaymentMethod(); // Implement this function to get the selected payment method
+                showPaymentSuccessMessage(paymentMethod);
+            }
+        }
+
+        function showPaymentSuccessMessage(paymentMethod) {
+            alert(`Payment successful using ${paymentMethod}!`);
+        }
+
+        function getSelectedPaymentMethod() {
+            const paymentMethodRadios = document.getElementsByName('payment-method');
+            for (const radio of paymentMethodRadios) {
+                if (radio.checked) {
+                    return radio.value;
                 }
             }
-    
-            // Function to apply the promo code
-            function applyPromoCode() {
-                const promoCodeInput = document.getElementById('promoCodeInput').value.trim().toUpperCase();
-                const promoStatus = document.getElementById('promoStatus');
-                const grandTotal = document.getElementById('grandTotal');
-                const subtotalPrice = document.getElementById('subtotalPrice');
-                let subtotal = parseFloat(subtotalPrice.textContent.replace('$', ''));
-    
-                if (promoCodeInput === 'MIAOMIAO') {
-                    if (!discountApplied) {
-                        const discount = subtotal * 0.50;  // 50% discount
-                        const newTotal = subtotal - discount;
-                        grandTotal.textContent = `$${newTotal.toFixed(2)}`;
-                        promoStatus.textContent = 'Applied! (50% discount)';
-                        discountApplied = true;
-                    } else {
-                        promoStatus.textContent = 'Promo code already applied.';
-                    }
-                } else {
-                    promoStatus.textContent = 'Invalid promo code.';
-                }
-            }
-    
-            // Form validation function
-            function validateForm() {
-                const email = document.getElementById('email').value;
-                const firstName = document.getElementById('first-name').value;
-                const lastName = document.getElementById('last-name').value;
-                const address = document.getElementById('address').value;
-                const postalCode = document.getElementById('postal-code').value;
-    
-                let errorMessage = '';  // Store all the error messages
-    
-                // Simple email validation
-                const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-                if (!emailRegex.test(email)) {
-                    errorMessage += 'Please enter a valid email address.\n';
-                }
-    
-                // Check if all required fields are filled
-                if (!firstName) {
-                    errorMessage += 'Please enter your first name.\n';
-                }
-    
-                if (!lastName) {
-                    errorMessage += 'Please enter your last name.\n';
-                }
-    
-                if (!address) {
-                    errorMessage += 'Please enter your address.\n';
-                }
-    
-                if (!postalCode) {
-                    errorMessage += 'Please enter your postal code.\n';
-                }
-    
-                // If there are errors, show them
-                if (errorMessage) {
-                    displayErrorMessage(errorMessage);
-                    return false;
-                }
-    
-                // Form is valid
-                return true;
-            }
-    
-            // Display error message function
-            function displayErrorMessage(message) {
-                const errorMessageDiv = document.getElementById('error-message');
-                errorMessageDiv.textContent = message;
-                errorMessageDiv.style.display = 'block';
-            }
-    
-            // Call the checkout button submission function
-            function submitForm() {
-                if (validateForm()) {
-                    // Hide unnecessary elements
-                    document.getElementById('checkoutContainer').style.display = 'none';  // Hide the whole checkout container
-    
-                    // Show the "Thank You" message
-                    document.getElementById('thank-you-message').style.display = 'block';
-    
-                    // Show only the items being purchased
-                    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-                    const thankYouItemsContainer = document.getElementById('thankYouItemsContainer');
-                    thankYouItemsContainer.innerHTML = '';
-    
-                    cart.forEach((product) => {
-                        const productDiv = document.createElement('div');
-                        productDiv.className = 'co-product';
-                        productDiv.innerHTML = ` 
-                            <img src="${product.imageUrl}" alt="${product.title}" class="co-product-img">
-                            <div class="co-product-details">
-                                <p><strong>${product.title}</strong></p>
-                                <p>Quantity: ${product.quantity}</p>
-                                <p>Total: <strong>$${(product.price * product.quantity).toFixed(2)}</strong></p>
-                            </div>
-                        `;
-                        thankYouItemsContainer.appendChild(productDiv);
-                    });
-                }
-            }
-    
-            window.onload = loadCheckoutItems;
+            return null; // Return null if no payment method is selected
+        }
+
+        // This function ensures that the alert is triggered when an icon is clicked
+        const paymentIcons = document.querySelectorAll('.co-payment-methods img');
+        paymentIcons.forEach(icon => {
+            icon.addEventListener('click', () => {
+                const paymentMethod = icon.alt; // Get the value from the alt attribute of the clicked icon
+                showPaymentSuccessMessage(paymentMethod); // Show the success alert
+            });
+        });
+
+        window.onload = loadCheckoutItems;
+
         </script>
     </body>
     </html>
