@@ -61,11 +61,27 @@
             </div>
         </div>
     </div>
+    
     <script>
         function toggleMenu() {
             var menu = document.getElementById("dropdown");
             menu.classList.toggle("show");
         }
-        </script>
+
+        document.addEventListener('DOMContentLoaded', (event) => {
+            if (localStorage.getItem('voucherUnlocked') === 'true') {
+                const voucherContainer = document.querySelector('.vouchers-grid');
+                const newVoucher = document.createElement('div');
+                newVoucher.classList.add('voucher');
+                newVoucher.innerHTML = `
+                    <p class="discount">10% OFF</p>
+                    <p class="code">Code: STREAK50</p>
+                    <p class="expiry">Expires: In 30 days</p>
+                `;
+                voucherContainer.appendChild(newVoucher);
+                localStorage.removeItem('voucherUnlocked');
+            }
+        });
+    </script>
 </body>
 </html>

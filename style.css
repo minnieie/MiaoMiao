@@ -2009,7 +2009,7 @@ button:focus {
 }
 
 button:active {
-    background-color: #004085;
+    background-color: #f94e8d;
 }
 
 /* Add to your CSS file */
@@ -2087,7 +2087,39 @@ button:active {
     color: #666;
     font-size: 14px;
   }
-  
+/* Styles for the streak popup */
+/* General styles for the popup */
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    z-index: 1000;
+}
+
+/* Hidden class to hide the popup */
+.hidden {
+    display: none;
+}
+
+/* Optional: Style for the close button */
+.popup button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #ff4dbe;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.popup button:hover {
+    background-color: #0056b3;
+}
 /* 
 @media (max-width: 768px) {
     .tiers-section {

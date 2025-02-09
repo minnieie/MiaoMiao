@@ -37,12 +37,20 @@
         <a href="miaomiaopass.html">Miaomiao Pass</a>
         <a href="aboutus.html">About Us</a> 
     </div>
+    
     <main>
         <section class="account-section">
             <div class="profile">
                 <img src="figmaPics/Avatar.png" alt="Profile Picture" class="profile-pic">
                 <h2 class="username">MiaoMiao<3</h2>
             </div>
+
+            <!-- Login Streak -->
+            <div class="streak-section">
+                <p>🔥 <span id="streak-count">49</span> Days</p>
+                <button id="check-in" onclick="checkIn()">Check In</button>
+            </div>
+            
             <div class="wishlist-section">
                 <a href="wishlist.html">
                     <h3>Wishlists</h3>
@@ -71,24 +79,39 @@
             </div>
             <button id="signout" type="button">Sign Out</button>
         </section>
+        
         <aside class="newsletter-signup">
             <h2>SIGN UP FOR JOY DELIVERED TO YOUR INBOX</h2>
-            <p>Sign up for our email newsletter to be in the know about new arrivals, special offers, and exclusive events. When you sign up you'll receive 10% off your first purchase! When you become a MeowMeow's Insider you'll be able to create a baby.</p>
-            <!-- <input type="email" placeholder="Enter your email address here"> -->
+            <p>Sign up for our email newsletter to be in the know about new arrivals, special offers, and exclusive events. When you sign up you'll receive 10% off your first purchase!</p>
             <a href="subscribe.html"><button>JOIN NOW</button></a>
-            <div class="social-links">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-            </div>
         </aside>
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
+    </main>
+    
+    <!-- Badge Popup -->
+    <div id="badge-popup" class="popup hidden">
+        <p>🔥 You have a 10% off voucher for reaching a 50-day streak! Keep it up!</p>
+        <button onclick="closePopup()">Close</button>
+    </div>
+    
     <script>
         function toggleMenu() {
-            var menu = document.getElementById("dropdown");
-            menu.classList.toggle("show");
+            document.getElementById("dropdown").classList.toggle("show");
         }
-        </script>
+        
+        function checkIn() {
+            let streakCount = document.getElementById("streak-count");
+            let currentStreak = parseInt(streakCount.innerText);
+            
+            if (currentStreak === 49) {
+                streakCount.innerText = 50;
+                document.getElementById("badge-popup").classList.remove("hidden");
+                localStorage.setItem('voucherUnlocked', 'true');
+            }
+        }
+
+        function closePopup() {
+            document.getElementById("badge-popup").classList.add("hidden");
+        }
+    </script>
 </body>
 </html>
