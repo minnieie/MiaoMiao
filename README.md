@@ -106,5 +106,27 @@ To visualize the platform's layout and user flow, we created wireframes and mock
 + I received inspiration for this project from [POP MART's official website](https://eu.jellycat.com/)
 
 ## Individual Contributions to The Website
-### Geng Bai Hui
-- 
+### Toh Rui Min - Web Designer & Frontend Developer
+- learn how to use API firebase and successfully do create acc/login
+- did home page initially for functionality
+- full wishlist page with js,html, css implementation
+- full bag page with js,html,css implementation
+- ensure all product htmls are linked to 1 product detail html, using js to show all details for specific products
+- ensure adding to bag and adding to wishlist function works in product details html, being shown in wishlist.html and bag.html
+- ensure that there must be at least 1 product shown in bag before proceeding to checkout, prompt user if they do not have at least 1 product
+- checkout js, ensure can use promotional code MIAOMIAO and code is usable to decrease price
+- ensure validation of all inputs, prompt user to fill in "xx" if they have not.
+- ensure user need to pay using at least 1 payment method
+- added a "back to catalog" button in all the product html page
+- added a thank you for purchasing and link to home page in same checkout.html
+- checking if everything works for both mobile and laptop (Quality Assurance)
+
+### Geng Bai Hui - Web Designer & Frontend Developer
+- Designed the overall website layout, ensuring a clean and visually appealing UI/UX. 
+* Developed the catalog page (including New Arrivals, Best Sellers and Sanrio Pages), product details page, customer review page and the navigation abr, focusing on consistent design and smooth navigation. 
++ Ensured mobile responsiveness, making sure all pages adapt properly to different screen sizes.
+- Styled all pages using CSS, ensuring proper spacing, typography, and visual hierarchy. 
+* Implemented product card layouts for catalog, ensuring a clean and user-friendly browsing experience. 
++ Assisted in linking the product detail page dynamically using JavaScript to ensure all product pages follow a structured layout.
+- Created UI elements for buttons and interactive components, maintaining a cohesive visual style.
+* Conducted user experience testing, refining UI/UX based on responsiveness, usability, and visual feedback.

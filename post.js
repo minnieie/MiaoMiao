@@ -1,15 +1,51 @@
-document.querySelector('.post-review').addEventListener('click', function () {
-    document.querySelector('.review-modal').style.display = 'flex';
+document.addEventListener("DOMContentLoaded", function () {
+    // Open review modal
+    document.querySelector('.post-review').addEventListener('click', function () {
+        document.querySelector('.review-modal').style.display = 'flex';
+    });
+
+    // Close review modal
+    document.querySelector('.close-btn').addEventListener('click', function () {
+        document.querySelector('.review-modal').style.display = 'none';
+    });
+
+    // Ensure the review modal is showing
+    console.log("Review Modal JS Loaded");
 });
 
-document.querySelector('.close-btn').addEventListener('click', function () {
-    document.querySelector('.review-modal').style.display = 'none';
+document.addEventListener("DOMContentLoaded", function () {
+    // Open review modal
+    document.querySelector('.post-review').addEventListener('click', function () {
+        document.querySelector('.review-modal').style.display = 'flex';
+    });
+
+    // Close review modal
+    document.querySelector('.close-btn').addEventListener('click', function () {
+        document.querySelector('.review-modal').style.display = 'none';
+    });
+
+    // Handle review submission
+    document.querySelector('.submit-review').addEventListener('click', function () {
+        console.log("Submit button clicked!"); // Debugging log
+
+        // Close review modal
+        document.querySelector('.review-modal').style.display = 'none';
+
+        // Show points popup
+        document.querySelector('.points-popup').style.display = 'flex';
+    });
+
+    // Close the points popup
+    document.querySelector('.close-points-btn').addEventListener('click', function () {
+        document.querySelector('.points-popup').style.display = 'none';
+    });
 });
 
-// Star Rating System
-document.querySelectorAll('.star').forEach(star => {
+
+// Star Rating System (Fix class name)
+document.querySelectorAll('.rstar').forEach(star => {
     star.addEventListener('click', function () {
-        document.querySelectorAll('.star').forEach(s => s.classList.remove('active'));
+        document.querySelectorAll('.rstar').forEach(s => s.classList.remove('active'));
         this.classList.add('active');
         let prevStar = this.previousElementSibling;
         while (prevStar) {
@@ -34,6 +70,19 @@ document.getElementById('upload-img').addEventListener('change', function (event
 
 // Show points popup after posting
 document.querySelector('.submit-review').addEventListener('click', function () {
+    const caption = document.querySelector('.caption-input').value.trim();
+    const selectedStar = document.querySelector('.rstar.active');
+    
+    if (!selectedStar) {
+        alert("Please select a star rating.");
+        return;
+    }
+    
+    if (caption === "") {
+        alert("Please enter a caption for your review.");
+        return;
+    }
+
     document.querySelector('.review-modal').style.display = 'none';
     document.querySelector('.points-popup').style.display = 'flex';
 });

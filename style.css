@@ -410,7 +410,7 @@ footer button:hover {
   .wishlist-items-container > * {
     flex: 0 0 auto; /* Prevent items from shrinking */
   }
-  
+
 .newsletter-signup {
     background-color: #000;
     color: #fff;
