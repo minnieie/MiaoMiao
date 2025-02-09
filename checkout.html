@@ -206,48 +206,61 @@
             }
         }
 
-        // Form validation function
         function validateForm() {
-            const email = document.getElementById('email').value;
-            const firstName = document.getElementById('first-name').value;
-            const lastName = document.getElementById('last-name').value;
-            const address = document.getElementById('address').value;
-            const postalCode = document.getElementById('postal-code').value;
+        const email = document.getElementById('email').value;
+        const firstName = document.getElementById('first-name').value;
+        const lastName = document.getElementById('last-name').value;
+        const address = document.getElementById('address').value;
+        const postalCode = document.getElementById('postal-code').value;
 
-            let errorMessage = '';  // Store all the error messages
+        let errorMessage = '';  // Store all the error messages
 
-            // Simple email validation
-            const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-            if (!emailRegex.test(email)) {
-                errorMessage += 'Please enter a valid email address.\n';
-            }
-
-            // Check if all required fields are filled
-            if (!firstName) {
-                errorMessage += 'Please enter your first name.\n';
-            }
-
-            if (!lastName) {
-                errorMessage += 'Please enter your last name.\n';
-            }
-
-            if (!address) {
-                errorMessage += 'Please enter your address.\n';
-            }
-
-            if (!postalCode) {
-                errorMessage += 'Please enter your postal code.\n';
-            }
-
-            // If there are errors, show them
-            if (errorMessage) {
-                displayErrorMessage(errorMessage);
-                return false;
-            }
-
-            // Form is valid
-            return true;
+        // Simple email validation
+        const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+        if (!emailRegex.test(email)) {
+            errorMessage += 'Please enter a valid email address.\n';
         }
+
+        // Check if all required fields are filled
+        if (!firstName) {
+            errorMessage += 'Please enter your first name.\n';
+        }
+
+        if (!lastName) {
+            errorMessage += 'Please enter your last name.\n';
+        }
+
+        if (!address) {
+            errorMessage += 'Please enter your address.\n';
+        }
+
+        if (!postalCode) {
+            errorMessage += 'Please enter your postal code.\n';
+        }
+
+        // Check if at least one payment method is selected
+        const paymentMethods = document.getElementsByName('payment-method');
+        let isPaymentMethodSelected = false;
+        for (let i = 0; i < paymentMethods.length; i++) {
+            if (paymentMethods[i].checked) {
+                isPaymentMethodSelected = true;
+                break;
+            }
+        }
+
+        if (!isPaymentMethodSelected) {
+            errorMessage += 'Please select a payment method.\n';
+        }
+
+        // If there are errors, show them
+        if (errorMessage) {
+            displayErrorMessage(errorMessage);
+            return false;
+        }
+
+        // Form is valid
+        return true;
+    }
 
         // Display error message function
         function displayErrorMessage(message) {
