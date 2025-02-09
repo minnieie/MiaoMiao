@@ -401,6 +401,16 @@ footer button:hover {
     border-radius: 8px;
 }
 
+.wishlist-items-container {
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  
+  .wishlist-items-container > * {
+    flex: 0 0 auto; /* Prevent items from shrinking */
+  }
+  
 .newsletter-signup {
     background-color: #000;
     color: #fff;
