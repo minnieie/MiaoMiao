@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Your Bage</title>
+  <title>Your Bag</title>
   <link href="https://fonts.googleapis.com/css2?family=Kaisei+Tokumin:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -42,7 +42,7 @@
   </div>
   <hr>
   <h3>Total Price: <span id="totalPrice">$0.00</span></h3> <!-- Total price display -->
-  <a href="checkout.html"><button class="checkout-button">Proceed to Checkout</button></a>
+  <button class="checkout-button" onclick="validateCheckout()">Proceed to Checkout</button>
 </main>
 
 <!-- Footer -->
@@ -108,6 +108,16 @@
         totalPriceElement.textContent = `$${totalPrice.toFixed(2)}`;
     }
 
+    // Validate checkout button
+    function validateCheckout() {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        if (cart.length === 0) {
+            alert("You have no items in your bag. Please add items before proceeding to checkout.");
+        } else {
+            window.location.href = "checkout.html";
+        }
+    }
+
     // Update item quantity in the cart
     function updateQuantity(index, change) {
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -131,4 +141,3 @@
 </script>
 </body>
 </html>
-
