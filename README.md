@@ -131,3 +131,4 @@ To visualize the platform's layout and user flow, we created wireframes and mock
 + Assisted in linking the product detail page dynamically using JavaScript to ensure all product pages follow a structured layout.
 - Created UI elements for buttons and interactive components, maintaining a cohesive visual style.
 * Conducted user experience testing, refining UI/UX based on responsiveness, usability, and visual feedback.
++ Wrote the whole Readme file for this project
