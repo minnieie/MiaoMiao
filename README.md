@@ -107,7 +107,7 @@ To visualize the platform's layout and user flow, we created wireframes and mock
 + I received inspiration for this project from [POP MART's official website](https://eu.jellycat.com/)
 
 ## Individual Contributions to The Website
-### Toh Rui Min - Web Designer & Frontend Developer
+### Toh Rui Min - Frontend Developer & Backend Developer
 - learn how to use API firebase and successfully do create acc/login
 - did home page initially for functionality
 - full wishlist page with js,html, css implementation
